@@ -3,33 +3,25 @@ import UserCard from './UserCard'
 
 function UserProfile() {
 
-    const [users, setUsers] = useState([])
+    const [userData, setUserData] = useState({})
 
     useEffect(() => {
-        fetch("http://localhost:3000/api/v1/users")
+        fetch(`http://localhost:3000/users/${localStorage.userId}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`
+            }
+            
+        })
         .then((r) => r.json())
-        .then((usersArray) => {
-            setUsers(usersArray);
+        .then((userData) => {
+            console.log(userData)
+            setUserData(userData)
         });
     },[]);
 
-    const userCards = users.map((user) => {
-        return <UserCard 
-        key={user.id}
-        user={user}
-        />
-
-    })
-    // function handleDeleteUser(id) {
-    //     const newUsersArray = users.filter(user=>user.id !==id)
-    //     setUsers(newUsersArray)
-    // }
-
     return (
         <div>
-        <h1>User Profile:</h1>
-        <ul className="">{userCards}</ul>
-        {/* <UserCard deleteUser={handleDeleteUser}/> */}
+            <UserCard userData={userData} />
         </div>
     )
 }

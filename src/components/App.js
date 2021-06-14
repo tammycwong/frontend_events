@@ -10,10 +10,11 @@ import UserProfile from './UserProfile'
 import SignUp from './SignUp'
 
 function App() {
-    const [events, setEvents] = useState([])
+    const [events, setEvents] = useState()
+    const[loggedIn, setLoggedIn] = useState()
 
     useEffect(() => {
-        fetch("http://localhost:3000/api/v1/events", {
+        fetch("http://localhost:3000/events", {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${localStorage.token}`
@@ -21,9 +22,20 @@ function App() {
         })
         .then((r) => r.json())
         .then((eventsArray) => {
+            if(!localStorage.token){
+                return null
+            }
             setEvents(eventsArray);
+            setLoggedIn(eventsArray);
         });
     },[]);
+
+    // if(!localStorage.userId){
+    //     return<h2>Please Log In or Sign Up</h2>
+    // }
+    function onLogin(userData) {
+        setLoggedIn(userData)
+    }
 
     function handleAddEvent(newEvent) {
         const updatedEventsArray = [...events, newEvent];
@@ -34,36 +46,38 @@ function App() {
         setEvents(newEventsArray)
     }
 
-    function logOut() {
-        localStorage.clear()
-    }
+    // function logOut() {
+    //     localStorage.clear()
+    // }
 
 
     return (
         <div>
-            <NavBar/>
+            {loggedIn ? <NavBar loggedIn={loggedIn}
+            setLoggedIn={setLoggedIn}/> : null}
+
             <Switch>
                 <Route exact path='/'>
-                    <Home events={events}/>
-                </Route>
-                <Route exact path='/api/v1/login'>
                     <Login />
                 </Route>
                 <Route exact path="/signup">
                     <SignUp />
                 </Route>
                 <Route exact path='/userprofile'>
-                    <UserProfile />
+                    <UserProfile loggedIn={loggedIn}/>
                 </Route>
                 <Route exact path='/myevents'>
-                    <MyEvents />
+                    <MyEvents loggedIn={loggedIn}/>
                 </Route>
-                {/* <Route exact path='/allevents'>
-                    <AllEvents events={events} deleteEvent={handleDelete} addEvent={handleAddEvent}/>
-                </Route>
+                <Route exact path='/allevents'>
+                    <AllEvents loggedIn={loggedIn} events={events} deleteEvent={handleDelete} addEvent={handleAddEvent}/>
+                </Route> 
                 <Route exact path='/addevent'>
-                    <CreateEvent addEvent={handleAddEvent} />
-                </Route> */}
+                    <CreateEvent addEvent={handleAddEvent} loggedIn={loggedIn}/>
+                </Route>
+                <Route exact path='/createevent'>
+                    <CreateEvent loggedIn={loggedIn}/>
+                </Route>
             </Switch>
         </div>
     )

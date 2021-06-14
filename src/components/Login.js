@@ -4,16 +4,18 @@ import {useHistory} from "react-router-dom"
 function Login() {
 
     const history = useHistory();
-    const [errors, setErrors] = useState("")
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
-        let logIn= (e) => {
+    let jwt_token = localStorage.getItem("token")
+
+        function handleLogin(e) {
             e.preventDefault()
-            fetch("http://localhost:3000/api/v1/login", {
+            fetch("http://localhost:3000/login", {
              method: "POST",
              headers: {
-                 "Content-Type": "application/json"
+                 "Content-Type": "application/json",
+                 Authorization: `bearer ${jwt_token}`
              },
              body: JSON.stringify({
                  username: username,
@@ -21,20 +23,22 @@ function Login() {
                 }),
          })
             .then((res) => res.json())
-            .then(message => {
-                if (message.error) {
-                    setErrors(message.error);
-                } else {
-                localStorage.token = message.token
-                history.push("/myevents");
+            .then((userInfo => {
+                if(!userInfo.token){
+                    console.log(userInfo)
+                    // alert("Invalid Username or Password")
+                    return null
                 }
+                localStorage.token = userInfo.token;
+                localStorage.setItem(`userId`, `${userInfo.user.id}`);
+                history.push("/myevents")
             })
-        }
+            )}
     
     return (
         <div className="login-form">
             <h2>LogIn:</h2>
-            <form onSubmit={(e) => logIn(e) }>
+            <form onSubmit={(e) => handleLogin(e) }>
                 <label>Username: </label>
                 <input 
                 name="username" 

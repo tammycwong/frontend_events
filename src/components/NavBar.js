@@ -1,7 +1,8 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 
 function NavBar() {
+    let history = useHistory();
 
     return (
         <div className="nav-bar">
@@ -9,7 +10,7 @@ function NavBar() {
                 Home
             </Link>
 
-            <Link className="" to="/api/v1/login">
+            <Link className="" to="/login">
                 Login
             </Link>
 
@@ -28,12 +29,19 @@ function NavBar() {
             <Link className="" to="/allevents">
                 All Events
             </Link>
+            <Link className="" to="/createevent">
+                Create Event
+            </Link>
 
             {/* <Link className="" to="/addevent">
                 Create Event
             </Link> */}
 
-            <Link className="" to="">
+            <Link onClick={() => {
+                localStorage.clear();
+                history.push("/")
+            }}
+            >
                 Log Out
             </Link>
         </div>

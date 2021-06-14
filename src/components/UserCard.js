@@ -1,29 +1,41 @@
 import React from 'react'
 
-function UserCard({user}) {
-    const{image, username, name, age, location, interests}= user
+function UserCard({userData}) {
+    const{image, username, name, age, location, interests}= userData
 
-    // function handleDeleteUser() {
-    //     fetch(`http://localhost:3000/api/v1/users/${id}`, {
-    //         method: "DELETE"
-    //     })
-    //     .then((r) => r.json())
-    //     .then(() => {
-    //         deleteUser(id)
-    //     })
-    // }
+
+        const userEventCards = userData.events.map((event) => {
+            return <p key={event.id}> {event.name}</p>
+        })
+    console.log(userData)
     return(
-        <div>
-            <li className="">
+        <div className="">
                 <h3>{username}</h3>
                 <img src={image}/>
                 <p>name: {name}</p>
                 <p>age: {age}</p>
                 <p>location: {location}</p>
                 <p>interests: {interests}</p>
-                {/* <button onClick={handleDeleteUser} className="delete">Delete</button> */}
-            </li>
+                <p>{userEventCards}</p>
+
         </div>
     )
+
+    //     const userEventCards = userData.events.map((event) => {
+    //         return <p key={event.id}> {event.name}</p>
+    //     })
+    // console.log(userData)
+    // return(
+    //     <div className="">
+    //             <h3>{username}</h3>
+    //             <img src={image}/>
+    //             <p>name: {name}</p>
+    //             <p>age: {age}</p>
+    //             <p>location: {location}</p>
+    //             <p>interests: {interests}</p>
+    //             <p>{userEventCards}</p>
+
+    //     </div>
+    // )
 }
 export default UserCard
