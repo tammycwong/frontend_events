@@ -13,6 +13,8 @@ function App() {
     const[loggedIn, setLoggedIn] = useState({})
     const [rsvps, setRsvps] = useState([])
 
+
+
     useEffect(() => {
         fetch("http://localhost:3000/events", {
             method: "GET",
@@ -60,7 +62,11 @@ function App() {
         setRsvps(userInfo.user.rsvps)
     }
 
-    function handleAddEvent(newEvent) {
+    function handleNewRsvp(newRsvp) {
+        setRsvps([...rsvps, newRsvp])
+    }
+
+    function handleCreateEvent(newEvent) {
         const updatedEventsArray = [...events, newEvent];
         setEvents(updatedEventsArray);
     }
@@ -89,13 +95,13 @@ function App() {
                     <UserCard loggedIn={loggedIn}/>
                 </Route> */}
                 <Route exact path='/allevents'>
-                    <AllEvents loggedIn={loggedIn} events={events} deleteEvent={handleDelete} addEvent={handleAddEvent}/>
+                    <AllEvents loggedIn={loggedIn} events={events} deleteEvent={handleDelete} createEvent={handleCreateEvent} handleNewRsvp={handleNewRsvp}/>
                 </Route> 
                 {/* <Route exact path='/addevent'>
                     <CreateEvent addEvent={handleAddEvent} loggedIn={loggedIn}/>
                 </Route> */}
                 <Route exact path='/createevent'>
-                    <CreateEvent addEvent={handleAddEvent} loggedIn={loggedIn}/>
+                    <CreateEvent createEvent={handleCreateEvent} loggedIn={loggedIn} />
                 </Route>
             </Switch>
         </div>

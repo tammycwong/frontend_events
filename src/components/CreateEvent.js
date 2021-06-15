@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
 
-function CreateEvent({addEvent, loggedIn}) {
+function CreateEvent({createEvent, loggedIn}) {
     const[name, setName] = useState("");
     const[price, setPrice] = useState("");
     const[date, setDate] = useState("");
@@ -12,7 +12,6 @@ function CreateEvent({addEvent, loggedIn}) {
     const[category, setCategory] = useState("");
 
     const history = useHistory();
-
     function handleSubmit(e) {
         e.preventDefault();
         fetch("http://localhost:3000/events", {
@@ -20,7 +19,7 @@ function CreateEvent({addEvent, loggedIn}) {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.token}`
+                Authorization: `${localStorage.token}`
             },
             body: JSON.stringify({
                 name: name,
@@ -31,15 +30,13 @@ function CreateEvent({addEvent, loggedIn}) {
                 image: image,
                 description: description,
                 category: category,
-                // user_id: user.id,
-                // event_id: event.id
+                
             }),
         })
         .then((r) => r.json())
-        // .then((newEvent) => addEvent(newEvent));
         .then((newEvent) => {
-            console.log("ayy")
-            addEvent(newEvent)
+            console.log(newEvent)
+            createEvent(newEvent)
             history.push("/allevents");
         })
     }
@@ -124,7 +121,6 @@ function CreateEvent({addEvent, loggedIn}) {
 
                 <button type="submit">Create</button>
               </form>
-              {/* {loggedIn} */}
         </div>
 
     );

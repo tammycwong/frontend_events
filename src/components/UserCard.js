@@ -1,46 +1,21 @@
-import React, {useState, useEffect} from 'react'
-// import {useParams} from 'react-router-dom'
+import React, {useState} from 'react'
+import {useParams} from 'react-router-dom'
 
-function UserCard({userData}) {
-    const [rsvps, setRsvps] = useState({})
+function UserCard({userData, handleNewRsvp, rsvps}) {
     let userEventCards = []
     
     const{image, username, name, age, location, interests, event_id}= userData
-    // const params = useParams()
-    useEffect(() => {
-        fetch("http://localhost:3000/rsvps", {
-            method: "POST",
-            headers: {
-                Authorization: `Bearer ${localStorage.token}`
-            },
-            body: JSON.stringify({
-                event_id: event_id,
-                status: "yes",
-            }),
-            
-        })
-        .then((r) => r.json())
-        .then((rsvps) => {
-            setRsvps(rsvps);
-        });
-    }, []);
-    if(!userData.events) {
-        console.log("asshole")
-        return null
-    } else {
-    userEventCards = userData.events.map((event) => {
-        return <p key={event.id}> {event.name} <button>Delete</button></p>
+    const rsvpEventArray = rsvps.map((rsvp) => rsvp.event)
+    const rsvpArray = rsvpEventArray.map((event) => {
+        return <p>{event.name}</p>
     })
-
-}
-    // const rsvpArray = rsvps.status.map((rsvp) => {
-    //     return <p key={rsvp.id}>{rsvp.status}</p>
-    // })
-
-    
-        console.log(userData)
-        // events that belong to user => need to render RSVP events instead!!
-        // rsvps.find_by(user_id) ??
+        if(!userData.events) {
+            return null
+        } else {
+            userEventCards = userData.events.map((event) => {
+            return <p key={event.id}> {event.name} <button>Delete</button></p>
+            })
+        }
     return(
         <div className="">
                 <h3>{username}</h3>
@@ -49,14 +24,14 @@ function UserCard({userData}) {
                 <p>age: {age}</p>
                 <p>location: {location}</p>
                 <p>interests: {interests}</p>
-                <h4>Events:</h4>
-                    <ul>
+                <h4>Hosting:</h4>
+                <ul>
                     {userEventCards}
-                    </ul> 
-                <h4>RSVP:</h4>
-                {/* <ul>
+                </ul>
+                <h4>RSVPs:</h4>
+                <ul>
                     {rsvpArray}
-                </ul> */}
+                </ul>
                 <button>Add Event</button>
         </div>
     )
