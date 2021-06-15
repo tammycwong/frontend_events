@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 // import {useHistory} from 'react-router-dom'
 
-function SignUp() {
+function SignUp({onLogin}) {
 
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
@@ -32,6 +32,8 @@ function SignUp() {
             .then(res => res.json())
             .then((userInfo) => {
                 localStorage.token = userInfo.token;
+                onLogin(userInfo)
+
             })
     }
 

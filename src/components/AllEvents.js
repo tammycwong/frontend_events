@@ -19,6 +19,7 @@ function AllEvents({events, deleteEvent, addEvent, loggedIn}) {
             <div>
             <ul className="cards">{eventCards}</ul>
             {/* {loggedIn} */}
+            <button>Add Event</button>
             </div>
         )
     } else {

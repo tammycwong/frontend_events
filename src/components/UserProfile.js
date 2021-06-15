@@ -16,13 +16,14 @@ function UserProfile() {
         .then((r) => r.json())
         .then((userData) => {
             console.log(userData)
-            setUserData(userData)
+            setUserData(userData.user)
         });
     },[params.id]);
 
     return (
         <div>
-            <UserCard userData={userData} />
+            <UserCard userData={userData}/>
+            {/* {rsvps} */}
         </div>
     )
 }

@@ -18,7 +18,7 @@ function NavBar({loggedIn}) {
             <Link className="" to={`/userprofile/${loggedIn.id}`}>
                 Profile
             </Link> 
-            : null}
+            : null} 
 
             <Link className="" to="/allevents">
                 All Events
@@ -38,7 +38,6 @@ function NavBar({loggedIn}) {
             >
                 Log Out
             </Link>
-            {/* {loggedIn} */}
         </div>
     )
 }
