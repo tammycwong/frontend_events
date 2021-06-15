@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {useHistory} from "react-router-dom"
 
-function Login() {
+function Login({onLogin}) {
 
     const history = useHistory();
     const [username, setUsername] = useState("")
@@ -25,13 +25,15 @@ function Login() {
             .then((res) => res.json())
             .then((userInfo => {
                 if(!userInfo.token){
-                    console.log(userInfo)
-                    // alert("Invalid Username or Password")
+                    // console.log(userInfo)
+                    alert("Invalid Username or Password")
                     return null
-                }
+                } else {
                 localStorage.token = userInfo.token;
-                localStorage.setItem(`userId`, `${userInfo.user.id}`);
-                history.push("/myevents")
+                onLogin(userInfo)
+                // localStorage.setItem(`userId`, `${userInfo.user.id}`);
+                history.push(`/userprofile/${userInfo.user.id}`)
+                }
             })
             )}
     

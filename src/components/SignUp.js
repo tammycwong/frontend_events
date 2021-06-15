@@ -14,7 +14,7 @@ function SignUp() {
     let signUp= (e) => {
         e.preventDefault()
 
-         fetch("http://localhost:3000/api/v1/users", {
+         fetch("http://localhost:3000/users", {
              method: "POST",
              headers: {
                  "Content-Type": "application/json"

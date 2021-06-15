@@ -1,17 +1,17 @@
 import {Switch, Route} from 'react-router-dom'
 import React, {useState, useEffect} from 'react'
 import Login from './Login'
-import Home from './Home'
 import AllEvents from './AllEvents'
-import MyEvents from './MyEvents'
 import NavBar from './NavBar'
 import CreateEvent from './CreateEvent'
 import UserProfile from './UserProfile'
 import SignUp from './SignUp'
+import UserCard from './UserCard'
 
 function App() {
     const [events, setEvents] = useState()
     const[loggedIn, setLoggedIn] = useState()
+    const [user, setUser] = useState(null)
 
     useEffect(() => {
         fetch("http://localhost:3000/events", {
@@ -26,15 +26,43 @@ function App() {
                 return null
             }
             setEvents(eventsArray);
-            setLoggedIn(eventsArray);
         });
     },[]);
+
+    useEffect(() => {
+        if (localStorage.token) {
+          fetch("http://localhost:3000/keep_logged_in", {
+            method: "GET",
+            headers: {
+                "Authorization": localStorage.token
+            }
+          })
+          .then(resp => resp.json())
+          .then(data => {
+              setLoggedIn(data)
+          })
+        }
+      }, [])
+    // useEffect(() => {
+    //     const loggedIn = localStorage.getItem("user")
+    //     if(loggedIn) {
+    //         const currentUser = {username: localStorage.getItem("username"),
+    //         id: localStorage.getItem("id"),
+    //         token: localStorage.getItem("token")}
+    //         setUser(currentUser)
+    //     }
+    // }, [])
 
     // if(!localStorage.userId){
     //     return<h2>Please Log In or Sign Up</h2>
     // }
-    function onLogin(userData) {
-        setLoggedIn(userData)
+
+    // function onLogin(userData) {
+    //     setLoggedIn(userData)
+    // }
+
+    function onLogin(userInfo) {
+        setUser(userInfo)
     }
 
     function handleAddEvent(newEvent) {
@@ -46,37 +74,33 @@ function App() {
         setEvents(newEventsArray)
     }
 
-    // function logOut() {
-    //     localStorage.clear()
-    // }
-
-
     return (
         <div>
-            {loggedIn ? <NavBar loggedIn={loggedIn}
-            setLoggedIn={setLoggedIn}/> : null}
+            {/* {loggedIn ? <NavBar loggedIn={loggedIn}
+            setLoggedIn={setLoggedIn}/> : null} */}
+            <NavBar/>
 
             <Switch>
                 <Route exact path='/'>
-                    <Login />
+                    <Login onLogin={onLogin}/>
                 </Route>
                 <Route exact path="/signup">
-                    <SignUp />
+                    <SignUp onLogin={onLogin}/>
                 </Route>
-                <Route exact path='/userprofile'>
+                <Route exact path='/userprofile/:id'>
                     <UserProfile loggedIn={loggedIn}/>
                 </Route>
-                <Route exact path='/myevents'>
-                    <MyEvents loggedIn={loggedIn}/>
+                <Route exact path='/userprofile/:id'>
+                    <UserCard loggedIn={loggedIn}/>
                 </Route>
                 <Route exact path='/allevents'>
                     <AllEvents loggedIn={loggedIn} events={events} deleteEvent={handleDelete} addEvent={handleAddEvent}/>
                 </Route> 
-                <Route exact path='/addevent'>
+                {/* <Route exact path='/addevent'>
                     <CreateEvent addEvent={handleAddEvent} loggedIn={loggedIn}/>
-                </Route>
+                </Route> */}
                 <Route exact path='/createevent'>
-                    <CreateEvent loggedIn={loggedIn}/>
+                    <CreateEvent addEvent={handleAddEvent} loggedIn={loggedIn}/>
                 </Route>
             </Switch>
         </div>

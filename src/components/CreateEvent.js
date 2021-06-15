@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
+import {useHistory} from 'react-router-dom'
 
-function CreateEvent({addEvent}) {
+function CreateEvent({addEvent, loggedIn}) {
     const[name, setName] = useState("");
     const[price, setPrice] = useState("");
     const[date, setDate] = useState("");
@@ -10,12 +11,16 @@ function CreateEvent({addEvent}) {
     const[description, setDescription] = useState("");
     const[category, setCategory] = useState("");
 
+    const history = useHistory();
+
     function handleSubmit(e) {
         e.preventDefault();
-        fetch("http://localhost:3000/api/v1/events", {
+        fetch("http://localhost:3000/events", {
+            // /${localStorage.event.id}
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.token}`
             },
             body: JSON.stringify({
                 name: name,
@@ -26,16 +31,23 @@ function CreateEvent({addEvent}) {
                 image: image,
                 description: description,
                 category: category,
+                // user_id: user.id,
+                // event_id: event.id
             }),
         })
         .then((r) => r.json())
-        .then((newEvent) => console.log(newEvent));
+        // .then((newEvent) => addEvent(newEvent));
+        .then((newEvent) => {
+            console.log("ayy")
+            addEvent(newEvent)
+            history.push("/allevents");
+        })
     }
 
 
     return (
         <div className="new-event-form">
-            <h1>Add Event</h1>
+            <h1>Create Event</h1>
               <form onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -110,8 +122,9 @@ function CreateEvent({addEvent}) {
                 />
                 <br/>
 
-                <button type="submit">Add Event</button>
+                <button type="submit">Create</button>
               </form>
+              {/* {loggedIn} */}
         </div>
 
     );

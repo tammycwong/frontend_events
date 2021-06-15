@@ -1,30 +1,24 @@
 import React from 'react'
 import {Link, useHistory} from 'react-router-dom'
 
-function NavBar() {
+function NavBar({loggedIn}) {
     let history = useHistory();
-
+    console.log(loggedIn)
     return (
         <div className="nav-bar">
-            <Link className="" to="/">
-                Home
-            </Link>
-
-            <Link className="" to="/login">
+            {/* <Link className="" to="/">
                 Login
-            </Link>
+            </Link> */}
 
             <Link className="" to="/signup">
                 Sign Up
             </Link>
 
-            <Link className="" to="/userprofile">
+            {loggedIn ? 
+            <Link className="" to={`/userprofile/${loggedIn.id}`}>
                 Profile
-            </Link>
-
-            <Link className="" to="/myevents">
-                My Events
-            </Link>
+            </Link> 
+            : null}
 
             <Link className="" to="/allevents">
                 All Events
@@ -44,6 +38,7 @@ function NavBar() {
             >
                 Log Out
             </Link>
+            {/* {loggedIn} */}
         </div>
     )
 }

@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react'
+import { useParams } from 'react-router-dom';
 import UserCard from './UserCard'
 
 function UserProfile() {
 
     const [userData, setUserData] = useState({})
-
+    const params = useParams()
     useEffect(() => {
-        fetch(`http://localhost:3000/users/${localStorage.userId}`, {
+        fetch(`http://localhost:3000/users/${params.id}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`
             }
@@ -17,7 +18,7 @@ function UserProfile() {
             console.log(userData)
             setUserData(userData)
         });
-    },[]);
+    },[params.id]);
 
     return (
         <div>
