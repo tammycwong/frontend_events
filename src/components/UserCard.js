@@ -2,34 +2,42 @@ import React, {useState, useEffect} from 'react'
 // import {useParams} from 'react-router-dom'
 
 function UserCard({userData}) {
-
-    // const [rsvps, setRsvps] = useState({})
-    // const params = useParams()
-    // useEffect(() => {
-    //     fetch(`http://localhost:3000/rsvps/${params.id}`, {
-    //         headers: {
-    //             Authorization: `Bearer ${localStorage.token}`
-    //         }
-            
-    //     })
-    //     .then((r) => r.json())
-    //     .then((rsvps) => {
-    //         console.log(rsvps)
-    //         setRsvps(rsvps)
-    //     });
-    // },[params.id]);
+    const [rsvps, setRsvps] = useState({})
     let userEventCards = []
     
-    const{image, username, name, age, location, interests}= userData
-        if(!userData.events) {
-            console.log("asshole")
-            return null
-        } else {
-        userEventCards = userData.events.map((event) => {
-            return <p key={event.id}> {event.name} <button>Delete</button></p>
+    const{image, username, name, age, location, interests, event_id}= userData
+    // const params = useParams()
+    useEffect(() => {
+        fetch("http://localhost:3000/rsvps", {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`
+            },
+            body: JSON.stringify({
+                event_id: event_id,
+                status: "yes",
+            }),
+            
         })
+        .then((r) => r.json())
+        .then((rsvps) => {
+            setRsvps(rsvps);
+        });
+    }, []);
+    if(!userData.events) {
+        console.log("asshole")
+        return null
+    } else {
+    userEventCards = userData.events.map((event) => {
+        return <p key={event.id}> {event.name} <button>Delete</button></p>
+    })
 
-    }
+}
+    // const rsvpArray = rsvps.status.map((rsvp) => {
+    //     return <p key={rsvp.id}>{rsvp.status}</p>
+    // })
+
+    
         console.log(userData)
         // events that belong to user => need to render RSVP events instead!!
         // rsvps.find_by(user_id) ??
@@ -46,6 +54,9 @@ function UserCard({userData}) {
                     {userEventCards}
                     </ul> 
                 <h4>RSVP:</h4>
+                {/* <ul>
+                    {rsvpArray}
+                </ul> */}
                 <button>Add Event</button>
         </div>
     )

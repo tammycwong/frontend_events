@@ -83,7 +83,7 @@ function App() {
                     <SignUp onLogin={onLogin}/>
                 </Route>
                 <Route exact path='/userprofile/:id'>
-                    <UserProfile loggedIn={loggedIn}/>
+                    <UserProfile loggedIn={loggedIn} rsvps={rsvps}/>
                 </Route>
                 {/* <Route exact path='/userprofile/:id'>
                     <UserCard loggedIn={loggedIn}/>
