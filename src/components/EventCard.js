@@ -2,21 +2,9 @@ import React from 'react'
 import {useHistory} from "react-router-dom"
 
 
-function EventCard({event, deleteEvent, createEvent, handleNewRsvp, userId}) {
+function EventCard({loggedIn, event, createEvent, handleNewRsvp, userId, onDelete}) {
     const {id, name, price, date, time, location, image, description, category} = event  
     const history = useHistory();
-
-    function handleDelete() {
-        fetch("http://localhost:3000/events", {
-            // ${params.id}`, {
-            method: "DELETE"
-        })
-        .then((r) => r.json())
-        .then(() => {
-            deleteEvent(id)
-            history.push("/allevents")
-        })
-    }
 
     function handleRsvp () {
         fetch("http://localhost:3000/rsvps", {
@@ -42,16 +30,18 @@ function EventCard({event, deleteEvent, createEvent, handleNewRsvp, userId}) {
         <div>
             <ul className="card">
             <h3>{name}</h3>
-            <img src={image}/>
+            <img src={image} alt={name}/>
             <p>Category: {category}</p>
             <p>Price: ${price}</p>
             <p>Date: {date}</p>
             <p>Time: {time}</p>
             <p>Location: {location}</p>
             <p>Description: {description}</p>
-            <button onClick={handleDelete} className="delete">Delete</button>
-         </ul>
-            <button>Add Calendar</button>
+            {loggedIn.id === event.user_id ? (
+            <button onClick={(e)=>onDelete()}className="delete">Delete</button>
+            ) : null}
+            </ul>
+            <button>Add To Calendar</button>
             <button onClick={()=>handleRsvp()}>RSVP</button>
         
         </div>

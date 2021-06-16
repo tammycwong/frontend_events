@@ -3,7 +3,6 @@ import {Link, useHistory} from 'react-router-dom'
 
 function NavBar({loggedIn}) {
     let history = useHistory();
-    console.log(loggedIn)
     return (
         <div className="nav-bar">
             {/* <Link className="" to="/">
@@ -16,6 +15,7 @@ function NavBar({loggedIn}) {
 
             {loggedIn ? 
             <Link className="" to={`/userprofile/${loggedIn.id}`}>
+            {/* {`/userprofile/${loggedIn.id}`} */}
                 Profile
             </Link> 
             : null} 
@@ -33,6 +33,7 @@ function NavBar({loggedIn}) {
 
             <Link onClick={() => {
                 localStorage.clear();
+                alert("Successfully logged out")
                 history.push("/")
             }}
             >

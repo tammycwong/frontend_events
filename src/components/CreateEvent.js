@@ -11,6 +11,8 @@ function CreateEvent({createEvent, loggedIn}) {
     const[description, setDescription] = useState("");
     const[category, setCategory] = useState("");
 
+    console.log(loggedIn)
+
     const history = useHistory();
     function handleSubmit(e) {
         e.preventDefault();
@@ -110,16 +112,27 @@ function CreateEvent({createEvent, loggedIn}) {
                 />
                 <br/>
 
-                <input
-                    type="text"
+                <select
+                    className=""
                     name="category"
                     placeholder="Category"
                     value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                />
-                <br/>
+                    onChange={(e) => setCategory(e.target.value)}>
+                    <option>Workout</option>
+                    <option>Nightlife</option>
+                    <option>Free</option>
+                    <option>Games</option>
+                    <option>Class</option>
+                    <option>Outdoors</option>
+                    <option>Personal</option>
+                    <option>Food</option>
+                    <option>Entertainment</option>
+                </select>
 
+                <br/>
+                {loggedIn ? (
                 <button type="submit">Create</button>
+                 ) : alert("please login or sign up") }
               </form>
         </div>
 

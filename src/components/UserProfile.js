@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom';
 import UserCard from './UserCard'
 
-function UserProfile({rsvps}) {
+function UserProfile({rsvps, onDelete}) {
 
     const [userData, setUserData] = useState({})
     const [isLoaded, setIsLoaded] = useState(false)
@@ -15,7 +15,6 @@ function UserProfile({rsvps}) {
         })
         .then((r) => r.json())
         .then((userData) => {
-            console.log(userData)
             setUserData(userData.user)
             setIsLoaded(true)
         });
@@ -24,12 +23,16 @@ function UserProfile({rsvps}) {
     if(isLoaded) {
         return (
             <div>
-                <UserCard userData={userData} rsvps={rsvps}/>
+                <UserCard 
+                userData={userData} 
+                rsvps={rsvps} 
+                onDelete={onDelete}
+                />
             </div>
         )
     } else {
         return (
-            <p>Loading...</p>
+            <p>Please <a href="/">Login</a> or <a href="/signup">Sign Up</a>to view your profile</p>
         )
     }
 

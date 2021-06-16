@@ -1,20 +1,21 @@
 import React from 'react'
 import EventCard from './EventCard'
 
-function AllEvents({events, deleteEvent, createEvent, loggedIn, handleNewRsvp}) {
+function AllEvents({events, createEvent, loggedIn, handleNewRsvp, onDelete}) {
     const {id} = loggedIn
 
     if(events) {
     const eventCards = events.map((event) => {
-        console.log(event.id)
+    //    console.log(event.user_id)
         return (
             <EventCard 
             key={event.id}
             event={event}
-            deleteEvent={deleteEvent}
             createEvent={createEvent}
             handleNewRsvp={handleNewRsvp}
             userId = {id}
+            onDelete={onDelete}
+            loggedIn={loggedIn}
             />
         )
     })

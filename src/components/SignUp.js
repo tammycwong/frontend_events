@@ -40,7 +40,7 @@ function SignUp({onLogin}) {
     return (
         <div>
         <h2>Sign Up:</h2>
-            <form onSubmit={(e) => signUp(e)} >
+            <form onSubmit={(e) => signUp(e)} className="user-info">
                 <label>Username: </label>
                 <input 
                 name="username" 
