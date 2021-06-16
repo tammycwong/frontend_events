@@ -1,12 +1,11 @@
 import React from 'react'
-import {useHistory, useParams} from "react-router-dom"
+import {useHistory} from "react-router-dom"
 
 
 function EventCard({loggedIn, event, createEvent, handleNewRsvp, userId, onDeleteEvent}) {
     const {id, name, price, date, time, location, image, description, category} = event  
     // console.log(event.id)
     const history = useHistory();
-    let params = useParams();
 
     function handleRsvp () {
         fetch("http://localhost:3000/rsvps", {
@@ -39,7 +38,6 @@ function EventCard({loggedIn, event, createEvent, handleNewRsvp, userId, onDelet
         .then(() => {
             console.log("asshole")
             onDeleteEvent(id)
-            // history.push("/allevents")
         })
     }
     

@@ -1,12 +1,12 @@
 import React from 'react'
 import EventCard from './EventCard'
-import { useParams, useHistory } from 'react-router-dom'
+// import { useParams, useHistory } from 'react-router-dom'
 
 
-function AllEvents({events, createEvent, loggedIn, handleNewRsvp, onDeleteEvent}) {
+function AllEvents({events, createEvent, loggedIn, handleNewRsvp, onDeleteEvent, handleOnDelete}) {
     const {id} = loggedIn
-    let history = useHistory()
-    const params = useParams()
+    // let history = useHistory()
+    // const params = useParams()
 
     if(events) {
     const eventCards = events.map((event) => {

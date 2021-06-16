@@ -42,17 +42,6 @@ function App() {
         setEvents(newEventsArray);
     }
 
-    // function handleDelete(id) {
-    //     fetch(`http://localhost:3000/events/${params.id}`, {
-    //         // ${params.id}`, {
-    //         method: "DELETE"
-    //     })
-    //     .then((r) => r.json())
-    //     .then(() => {
-    //         handleOnDelete(id)
-    //         history.push("/allevents")
-    //     })
-    // }
     function onLogin(userInfo) {
         setLoggedIn(userInfo.user)
         setRsvps(userInfo.user.rsvps)
@@ -86,7 +75,6 @@ function App() {
                     <UserProfile 
                     loggedIn={loggedIn} 
                     rsvps={rsvps} 
-                    onDeleteEvent = {handleDeleteEvent}
                     />
                 </Route>
 

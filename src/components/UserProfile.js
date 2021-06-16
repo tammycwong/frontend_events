@@ -2,11 +2,12 @@ import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom';
 import UserCard from './UserCard'
 
-function UserProfile({rsvps, onDeleteEvent}) {
+function UserProfile({rsvps, onDeleteEvent, onUpdatedUserData}) {
 
     const [userData, setUserData] = useState({})
     const [isLoaded, setIsLoaded] = useState(false)
     const params = useParams()
+
     useEffect(() => {
         fetch(`http://localhost:3000/users/${params.id}`, {
             headers: {
@@ -20,6 +21,20 @@ function UserProfile({rsvps, onDeleteEvent}) {
         });
     },[params.id]);
 
+    function handleUpdatedUserData(updatedUserData) {
+        console.log(userData)
+        // onUpdatedUserData(updatedUserData)
+        console.log(updatedUserData)
+        const updatedUserDataArray = userData.map(data => {
+            if (data.id === updatedUserData.id) {
+                return updatedUserData;
+            } else {
+                return userData;
+            };
+        })
+        console.log(updatedUserDataArray)
+    }
+
     if(isLoaded) {
         return (
             <div>
@@ -27,12 +42,15 @@ function UserProfile({rsvps, onDeleteEvent}) {
                 userData={userData} 
                 rsvps={rsvps} 
                 onDeleteEvent={onDeleteEvent}
+                onUpdatedUserData={handleUpdatedUserData}
                 />
             </div>
         )
     } else {
         return (
+            <div>
             <p>Please <a href="/">Login</a> or <a href="/signup">Sign Up</a>to view your profile</p>
+            </div>
         )
     }
 
