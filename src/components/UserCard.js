@@ -1,10 +1,12 @@
 import React from 'react'
 
-function UserCard({userData, rsvps, onDelete}) {
+function UserCard({userData, rsvps, onDeleteEvent}) {
     let userEventCards = []
     const{image, username, name, age, location, interests}= userData
 
-    console.log(userData)
+    console.log(onDeleteEvent)
+
+    // console.log(userData)
     const rsvpEventArray = rsvps.map((rsvp) => rsvp.event)
     const rsvpArray = rsvpEventArray.map((event) => {
         return <p>{event.name}<button>Edit Status</button></p>
@@ -13,7 +15,7 @@ function UserCard({userData, rsvps, onDelete}) {
             return null
         } else {
             userEventCards = userData.events.map((event) => {
-            return <p key={event.id}> {event.name} <button onClick={(e)=>onDelete()}>Delete</button></p>
+            return <p key={event.id}> {event.name} <button onClick={onDeleteEvent}>Delete</button></p>
             })
         }
 

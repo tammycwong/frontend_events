@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom';
 import UserCard from './UserCard'
 
-function UserProfile({rsvps, onDelete}) {
+function UserProfile({rsvps, onDeleteEvent}) {
 
     const [userData, setUserData] = useState({})
     const [isLoaded, setIsLoaded] = useState(false)
@@ -26,7 +26,7 @@ function UserProfile({rsvps, onDelete}) {
                 <UserCard 
                 userData={userData} 
                 rsvps={rsvps} 
-                onDelete={onDelete}
+                onDeleteEvent={onDeleteEvent}
                 />
             </div>
         )

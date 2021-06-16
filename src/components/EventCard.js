@@ -1,10 +1,12 @@
 import React from 'react'
-import {useHistory} from "react-router-dom"
+import {useHistory, useParams} from "react-router-dom"
 
 
-function EventCard({loggedIn, event, createEvent, handleNewRsvp, userId, onDelete}) {
+function EventCard({loggedIn, event, createEvent, handleNewRsvp, userId, onDeleteEvent}) {
     const {id, name, price, date, time, location, image, description, category} = event  
+    // console.log(event.id)
     const history = useHistory();
+    let params = useParams();
 
     function handleRsvp () {
         fetch("http://localhost:3000/rsvps", {
@@ -25,7 +27,22 @@ function EventCard({loggedIn, event, createEvent, handleNewRsvp, userId, onDelet
             handleNewRsvp(userRsvps);
             history.push(`/userprofile/${userId}`)
         });
+    }    
+
+
+    function handleOnDelete() {
+        fetch(`http://localhost:3000/events/${id}`, {
+            // ${params.id}`, {
+            method: "DELETE"
+        })
+        .then((r) => r.json())
+        .then(() => {
+            console.log("asshole")
+            onDeleteEvent(id)
+            // history.push("/allevents")
+        })
     }
+    
     return (
         <div>
             <ul className="card">
@@ -38,7 +55,7 @@ function EventCard({loggedIn, event, createEvent, handleNewRsvp, userId, onDelet
             <p>Location: {location}</p>
             <p>Description: {description}</p>
             {loggedIn.id === event.user_id ? (
-            <button onClick={(e)=>onDelete()}className="delete">Delete</button>
+            <button onClick={handleOnDelete} className="delete">Delete</button>
             ) : null}
             </ul>
             <button>Add To Calendar</button>

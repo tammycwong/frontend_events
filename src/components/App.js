@@ -1,4 +1,4 @@
-import {Switch, Route, useHistory, useParams} from 'react-router-dom'
+import {Switch, Route} from 'react-router-dom'
 import React, {useState, useEffect} from 'react'
 import Login from './Login'
 import AllEvents from './AllEvents'
@@ -11,8 +11,6 @@ function App() {
     const[events, setEvents] = useState([])
     const[loggedIn, setLoggedIn] = useState({})
     const[rsvps, setRsvps] = useState([])
-    let history = useHistory()
-    const params = useParams();
 
     useEffect(() => {
         fetch("http://localhost:3000/events", {
@@ -39,22 +37,22 @@ function App() {
         }
       }, [])
 
-    //   function handleOnDelete(id) {
-    //     const newEventsArray = events.filter(event=>event.id !==id)
-    //     setEvents(newEventsArray)
-    // }
-      function handleDelete() {
-        fetch(`http://localhost:3000/events/${params.id}`, {
-            // ${params.id}`, {
-            method: "DELETE"
-        })
-        .then((r) => r.json())
-        .then(() => {
-            // handleOnDelete(id)
-            history.push("/allevents")
-        })
+      function handleDeleteEvent(id) {
+        const newEventsArray = events.filter(event=>event.id !== id)
+        setEvents(newEventsArray);
     }
 
+    // function handleDelete(id) {
+    //     fetch(`http://localhost:3000/events/${params.id}`, {
+    //         // ${params.id}`, {
+    //         method: "DELETE"
+    //     })
+    //     .then((r) => r.json())
+    //     .then(() => {
+    //         handleOnDelete(id)
+    //         history.push("/allevents")
+    //     })
+    // }
     function onLogin(userInfo) {
         setLoggedIn(userInfo.user)
         setRsvps(userInfo.user.rsvps)
@@ -88,7 +86,7 @@ function App() {
                     <UserProfile 
                     loggedIn={loggedIn} 
                     rsvps={rsvps} 
-                    onDelete={handleDelete}
+                    onDeleteEvent = {handleDeleteEvent}
                     />
                 </Route>
 
@@ -98,7 +96,7 @@ function App() {
                     events={events} 
                     createEvent={handleCreateEvent} 
                     handleNewRsvp={handleNewRsvp} 
-                    onDelete={handleDelete}
+                    onDeleteEvent = {handleDeleteEvent}
                     />
                 </Route> 
                 {/* <Route exact path='/addevent'>
