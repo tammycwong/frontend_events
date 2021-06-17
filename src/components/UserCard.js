@@ -13,6 +13,11 @@ function UserCard({userData, rsvps, handleOnDelete, onUpdatedUserData}) {
     const [updatedImage, updatedSetImage] = useState(image);
     const [updatedLocation, updatedSetLocation] = useState(location);
 
+    const [showEditForm, setShowEditForm] = useState(false)
+    function handleShowHide() {
+        setShowEditForm(!showEditForm)
+    }
+
     function handleEdit(e) {
         e.preventDefault();
         fetch(`http://localhost:3000/users/${id}`, {
@@ -56,18 +61,9 @@ function UserCard({userData, rsvps, handleOnDelete, onUpdatedUserData}) {
                 <p>age: {age}</p>
                 <p>location: {location}</p>
                 <p>interests: {interests}</p>
-                <button>Edit Profile</button>
-                <h4>Hosting:</h4>
-                <ul>
-                    {userEventCards}
-                </ul>
-                <h4>RSVPs:</h4>
-                <ul>
-                    {rsvpArray}
-                </ul>
-                <button>Add Event</button>
+                <button onClick={handleShowHide}>Edit Profile</button>
 
-                <h2>Edit Profile</h2>
+                {showEditForm ?
             <form onSubmit={handleEdit} className="edit-form">
             <label>Username: </label>
                 <input 
@@ -104,7 +100,7 @@ function UserCard({userData, rsvps, handleOnDelete, onUpdatedUserData}) {
                 <br />
 
                 <label>Interests:</label>
-                <input 
+                <textarea
                 name="interests" 
                 type="text" 
                 value={updatedInterests}
@@ -121,6 +117,16 @@ function UserCard({userData, rsvps, handleOnDelete, onUpdatedUserData}) {
                 <br />
                 <input type="submit" />
             </form>
+            : null}
+
+                <h4>Hosting:</h4>
+                <ul>
+                    {userEventCards}
+                </ul>
+                <h4>RSVPs:</h4>
+                <ul>
+                    {rsvpArray}
+                </ul>
         </div>
     )
 }

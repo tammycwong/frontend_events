@@ -22,20 +22,8 @@ function UserProfile({rsvps, onDeleteEvent, onUpdatedUserData}) {
     },[params.id]);
 
     function handleUpdatedUserData(updatedUserData) {
-        console.log(userData)
-        // onUpdatedUserData(updatedUserData)
-        // console.log(updatedUserData)
-        // const updatedUserDataArray = userData.map(data => {
-        //     if (data.id === updatedUserData.id) {
-        //         return updatedUserData;
-        //     } else {
-        //         return userData;
-        //     };
-        // })
-        // console.log(updatedUserDataArray)
         const objToArray = Object.values(userData)
-        console.log(objToArray)
-        const updatedUserDataArray = objToArray.map(data => {
+         objToArray.map(data => {
             if (data.id === updatedUserData.id) {
                 return updatedUserData;
             } else {
