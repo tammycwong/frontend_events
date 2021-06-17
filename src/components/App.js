@@ -9,7 +9,7 @@ import SignUp from './SignUp'
 
 function App() {
     const[events, setEvents] = useState([])
-    const[loggedIn, setLoggedIn] = useState({})
+    const[loggedIn, setLoggedIn] = useState(false)
     const[rsvps, setRsvps] = useState([])
 
     useEffect(() => {
@@ -60,7 +60,6 @@ function App() {
         <div>
             {loggedIn ? <NavBar loggedIn={loggedIn}
             setLoggedIn={setLoggedIn}/> : null}
-            {/* <NavBar loggedIn={loggedIn}/> */}
 
             <Switch>
                 <Route exact path='/'>
@@ -70,6 +69,7 @@ function App() {
                 <Route exact path="/signup">
                     <SignUp onLogin={onLogin}/>
                 </Route>
+
 
                 <Route exact path='/userprofile/:id'>
                     <UserProfile 
@@ -87,9 +87,7 @@ function App() {
                     onDeleteEvent = {handleDeleteEvent}
                     />
                 </Route> 
-                {/* <Route exact path='/addevent'>
-                    <CreateEvent addEvent={handleAddEvent} loggedIn={loggedIn}/>
-                </Route> */}
+
                 <Route exact path='/createevent'>
                     <CreateEvent 
                     createEvent={handleCreateEvent} 

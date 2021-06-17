@@ -22,13 +22,11 @@ function Login({onLogin}) {
             .then((res) => res.json())
             .then((userInfo => {
                 if(!userInfo.token){
-                    // console.log(userInfo)
                     alert("Invalid Username or Password")
                     return null
                 } else {
                 localStorage.token = userInfo.token;
                 onLogin(userInfo)
-                // localStorage.setItem(`userId`, `${userInfo.user.id}`);
                 history.push(`/userprofile/${userInfo.user.id}`)
                 }
             })

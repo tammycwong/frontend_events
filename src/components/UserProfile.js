@@ -45,9 +45,8 @@ function UserProfile({rsvps, onDeleteEvent, onUpdatedUserData}) {
         )
     } else {
         return (
-            <div>
+
             <p>Please <a href="/">Login</a> or <a href="/signup">Sign Up</a>to view your profile</p>
-            </div>
         )
     }
 

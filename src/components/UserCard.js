@@ -1,11 +1,12 @@
 import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
 
+
 function UserCard({userData, rsvps, handleOnDelete, onUpdatedUserData}) {
     let userEventCards = []
     let history = useHistory()
 
-    const{image, username, name, age, location, interests, password, id}= userData
+    const{image, username, name, location, interests, password, id}= userData
     const [updatedUsername, updatedSetUserName] = useState(username);
     const [updatedPassword, updatedSetPassword] = useState(password);
     const [updatedName, updatedSetName] = useState(name);
@@ -37,7 +38,7 @@ function UserCard({userData, rsvps, handleOnDelete, onUpdatedUserData}) {
             .then((r) => r.json())
             .then((updatedUserData) => {
                 onUpdatedUserData(updatedUserData);
-                history.push(`/userprofile/${id}`)
+                history.go(0)
             });      
         }
     const rsvpEventArray = rsvps.map((rsvp) => rsvp.event)
@@ -52,17 +53,15 @@ function UserCard({userData, rsvps, handleOnDelete, onUpdatedUserData}) {
             })
         }
 
-
     return(
         <div className="">
                 <h3>{username}</h3>
                 <img src={image} alt={name}/>
-                <p>name: {name}</p>
-                <p>age: {age}</p>
-                <p>location: {location}</p>
+                <p>{name}</p>
+                <p>{location}</p>
                 <p>interests: {interests}</p>
                 <button onClick={handleShowHide}>Edit Profile</button>
-
+                {/* <Modal> */}
                 {showEditForm ?
             <form onSubmit={handleEdit} className="edit-form">
             <label>Username: </label>
@@ -118,6 +117,7 @@ function UserCard({userData, rsvps, handleOnDelete, onUpdatedUserData}) {
                 <input type="submit" />
             </form>
             : null}
+            {/* </Modal> */}
 
                 <h4>Hosting:</h4>
                 <ul>
@@ -127,6 +127,7 @@ function UserCard({userData, rsvps, handleOnDelete, onUpdatedUserData}) {
                 <ul>
                     {rsvpArray}
                 </ul>
+                <button>Add Friend:</button>
         </div>
     )
 }

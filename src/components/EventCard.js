@@ -2,9 +2,8 @@ import React from 'react'
 import {useHistory} from "react-router-dom"
 
 
-function EventCard({loggedIn, event, createEvent, handleNewRsvp, userId, onDeleteEvent}) {
-    const {id, name, price, date, time, location, image, description, category} = event  
-    // console.log(event.id)
+function EventCard({loggedIn, event, handleNewRsvp, userId, onDeleteEvent}) {
+    const {id, name, price, date, time, location, image, description, category, user_id} = event  
     const history = useHistory();
 
     function handleRsvp () {
@@ -45,12 +44,13 @@ function EventCard({loggedIn, event, createEvent, handleNewRsvp, userId, onDelet
             <ul className="card">
             <h3>{name}</h3>
             <img src={image} alt={name}/>
-            <p>Category: {category}</p>
+            {/* <p>Category: {category}</p> */}
             <p>Price: ${price}</p>
             <p>Date: {date}</p>
             <p>Time: {time}</p>
             <p>Location: {location}</p>
             <p>Description: {description}</p>
+            <p>Host: {user_id}</p>
             {loggedIn.id === event.user_id ? (
             <button onClick={handleOnDelete} className="delete">Delete</button>
             ) : null}

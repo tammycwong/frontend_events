@@ -3,22 +3,29 @@ import {Link, useHistory} from 'react-router-dom'
 
 function NavBar({loggedIn}) {
     let history = useHistory();
+    // const [showLogin, setShowLogin]= useState()
+
+    // function handleLoginLink() {
+    //     setShowLogin(!showLogin)
+    // }
+    function handleLogOut() {
+        localStorage.clear();
+        alert("Successfully logged out")
+        history.go(1)
+    }
+
     return (
         <div className="nav-bar">
-            {/* <Link className="" to="/">
-                Login
-            </Link> */}
 
             <Link className="" to="/signup">
                 Sign Up
             </Link>
 
-            {loggedIn ? 
-            <Link className="" to={`/userprofile/${loggedIn.id}`}>
-            {/* {`/userprofile/${loggedIn.id}`} */}
+            { loggedIn? 
+            <Link to={`/userprofile/${loggedIn.id}`}>
                 Profile
             </Link> 
-            : null} 
+            : null }
 
             <Link className="" to="/allevents">
                 All Events
@@ -27,17 +34,21 @@ function NavBar({loggedIn}) {
                 Create Event
             </Link>
 
-            {/* <Link className="" to="/addevent">
-                Create Event
-            </Link> */}
+            <select className="filter">
+                <option>Category:</option>
+                <option>Workout</option>
+                <option>Nightlife</option>
+                <option>Free</option>
+                <option>Games</option>
+                <option>Class</option>
+                <option>Outdoors</option>
+                <option>Personal</option>
+                <option>Food</option>
+                <option>Entertainment</option>
+            </select>
 
-            <Link onClick={() => {
-                localStorage.clear();
-                alert("Successfully logged out")
-                history.push("/")
-            }}
-            >
-                Log Out
+            <Link onClick={handleLogOut} to="/">
+                Log out
             </Link>
         </div>
     )

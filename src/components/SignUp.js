@@ -5,8 +5,7 @@ function SignUp({onLogin}) {
 
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    const [name, setName] = useState("");
-    const [age, setAge] = useState("");
+    const [name, setName] = useState(""); 
     const [interests, setInterests] = useState("");
     const [image, setImage] = useState("");
     const [location, setLocation] = useState("");
@@ -23,7 +22,6 @@ function SignUp({onLogin}) {
                 username: username,
                 password: password,
                 name: name,
-                age: age,
                 interests: interests,
                 image: image,
                 location: location,
@@ -64,14 +62,7 @@ function SignUp({onLogin}) {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 />
-                <br />
-                <label>Age: </label>
-                <input 
-                name="age" 
-                type="number" 
-                value={age}
-                onChange={(e) => setAge(e.target.value)}
-                />
+                
                 <br />
                 <label>location</label>
                 <input 

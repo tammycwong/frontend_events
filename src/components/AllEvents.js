@@ -2,7 +2,7 @@ import React from 'react'
 import EventCard from './EventCard'
 
 
-function AllEvents({events, createEvent, loggedIn, handleNewRsvp, onDeleteEvent, handleOnDelete}) {
+function AllEvents({events, createEvent, loggedIn, handleNewRsvp, onDeleteEvent}) {
     const {id} = loggedIn
 
     if(events) {

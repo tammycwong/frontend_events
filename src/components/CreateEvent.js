@@ -48,6 +48,7 @@ function CreateEvent({createEvent, loggedIn}) {
         <div className="new-event-form">
             <h1>Create Event</h1>
               <form onSubmit={handleSubmit}>
+                  <label>Title: </label>
                 <input
                     type="text"
                     name="name"
@@ -56,7 +57,7 @@ function CreateEvent({createEvent, loggedIn}) {
                     onChange={(e) => setName(e.target.value)}
                 />
                 <br/>
-
+                <label>Price: </label>
                 <input
                     type="number"
                     name="price"
@@ -66,7 +67,7 @@ function CreateEvent({createEvent, loggedIn}) {
                     onChange={(e) => setPrice(e.target.value)}
                 />
                 <br/>
-
+                <label>Date: </label>
                 <input
                     type="text"
                     name="date"
@@ -76,6 +77,7 @@ function CreateEvent({createEvent, loggedIn}) {
                 />
                 <br/>
 
+                <label>Time: </label>
                 <input
                     type="text"
                     name="time"
@@ -85,6 +87,7 @@ function CreateEvent({createEvent, loggedIn}) {
                 />
                 <br/>
 
+                <label>Location: </label>
                 <input
                     type="text"
                     name="location"
@@ -94,6 +97,7 @@ function CreateEvent({createEvent, loggedIn}) {
                 />
                 <br/>
 
+                <label>Image: </label>
                 <input
                     type="text"
                     name="image"
@@ -103,7 +107,8 @@ function CreateEvent({createEvent, loggedIn}) {
                 />
                 <br/>
 
-                <input
+                <label>Description: </label>
+                <textarea
                     type="text"
                     name="description"
                     placeholder="Description"
@@ -112,6 +117,7 @@ function CreateEvent({createEvent, loggedIn}) {
                 />
                 <br/>
 
+                <label>Select Category: </label>
                 <select
                     className=""
                     name="category"
