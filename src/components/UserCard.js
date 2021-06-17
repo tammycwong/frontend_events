@@ -1,7 +1,10 @@
 import React, {useState} from 'react'
+import {useHistory} from 'react-router-dom'
 
 function UserCard({userData, rsvps, handleOnDelete, onUpdatedUserData}) {
     let userEventCards = []
+    let history = useHistory()
+
     const{image, username, name, age, location, interests, password, id}= userData
     const [updatedUsername, updatedSetUserName] = useState(username);
     const [updatedPassword, updatedSetPassword] = useState(password);
@@ -12,7 +15,7 @@ function UserCard({userData, rsvps, handleOnDelete, onUpdatedUserData}) {
 
     function handleEdit(e) {
         e.preventDefault();
-        fetch(`http://localhost:3000/userprofile/${id}`, {
+        fetch(`http://localhost:3000/users/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -29,6 +32,7 @@ function UserCard({userData, rsvps, handleOnDelete, onUpdatedUserData}) {
             .then((r) => r.json())
             .then((updatedUserData) => {
                 onUpdatedUserData(updatedUserData);
+                history.push(`/userprofile/${id}`)
             });      
         }
     const rsvpEventArray = rsvps.map((rsvp) => rsvp.event)

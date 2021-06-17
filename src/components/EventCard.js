@@ -36,7 +36,7 @@ function EventCard({loggedIn, event, createEvent, handleNewRsvp, userId, onDelet
         })
         .then((r) => r.json())
         .then(() => {
-            console.log("asshole")
+            // console.log("asshole")
             onDeleteEvent(id)
         })
     }

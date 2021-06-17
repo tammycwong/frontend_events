@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 import UserCard from './UserCard'
 
 function UserProfile({rsvps, onDeleteEvent, onUpdatedUserData}) {
@@ -24,15 +24,24 @@ function UserProfile({rsvps, onDeleteEvent, onUpdatedUserData}) {
     function handleUpdatedUserData(updatedUserData) {
         console.log(userData)
         // onUpdatedUserData(updatedUserData)
-        console.log(updatedUserData)
-        const updatedUserDataArray = userData.map(data => {
+        // console.log(updatedUserData)
+        // const updatedUserDataArray = userData.map(data => {
+        //     if (data.id === updatedUserData.id) {
+        //         return updatedUserData;
+        //     } else {
+        //         return userData;
+        //     };
+        // })
+        // console.log(updatedUserDataArray)
+        const objToArray = Object.values(userData)
+        console.log(objToArray)
+        const updatedUserDataArray = objToArray.map(data => {
             if (data.id === updatedUserData.id) {
                 return updatedUserData;
             } else {
                 return userData;
             };
         })
-        console.log(updatedUserDataArray)
     }
 
     if(isLoaded) {
