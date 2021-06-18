@@ -3,7 +3,6 @@ import { useParams} from 'react-router-dom';
 import UserCard from './UserCard'
 
 function UserProfile({rsvps, onDeleteEvent, onUpdatedUserData}) {
-
     const [userData, setUserData] = useState({})
     const [isLoaded, setIsLoaded] = useState(false)
     const params = useParams()
@@ -45,7 +44,6 @@ function UserProfile({rsvps, onDeleteEvent, onUpdatedUserData}) {
         )
     } else {
         return (
-
             <p>Please <a href="/">Login</a> or <a href="/signup">Sign Up</a>to view your profile</p>
         )
     }

@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
-
+import FullCalendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
 
 function UserCard({userData, rsvps, handleOnDelete, onUpdatedUserData}) {
     let userEventCards = []
@@ -46,23 +47,37 @@ function UserCard({userData, rsvps, handleOnDelete, onUpdatedUserData}) {
         return (
         <div>
             {event.name}<button>Edit Status</button>
-            <p>Attendees: </p>
-
+            <p>Attendees: 
             <select>
                 {event.all_attending_users.map((attendee) => {
                     return <option>{attendee}</option>
                 })}
             </select>    
+            </p>
         </div>
         )
     })
+ 
         if(!userData.events) {
             return null
         } else {
             userEventCards = userData.events.map((event) => {
-            return <p key={event.id}> {event.name} <button onClick={(event)=>handleOnDelete(event.id)}>Delete</button></p>
+            // const eventDate = event.date
+            // const eventTime = event.time
+                return (
+                    <div>
+                        <p key={event.id}> {event.name} <button onClick={(event)=>handleOnDelete(event.id)}>Delete</button></p>
+                       {/* <p>id: {event.id}</p>
+                        <p>event: `${userData.event}`</p> 
+                        <p>date: {new Date(eventDate)}</p>
+                        <p>time: new Date{(eventTime)}</p> */}
+                    </div>
+                    )
             })
         }
+
+
+        
 
     return(
         <div className="">
@@ -139,6 +154,13 @@ function UserCard({userData, rsvps, handleOnDelete, onUpdatedUserData}) {
                     {rsvpArray}
                 </ul>
                 <button>Add Friend:</button>
+
+
+                <FullCalendar
+                initialView="dayGridWeek"
+                plugins={[dayGridPlugin]}
+                userData={userData}
+                />
         </div>
     )
 }
