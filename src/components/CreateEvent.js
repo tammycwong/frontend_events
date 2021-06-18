@@ -11,8 +11,6 @@ function CreateEvent({createEvent, loggedIn}) {
     const[description, setDescription] = useState("");
     const[category, setCategory] = useState("");
 
-    console.log(loggedIn)
-
     const history = useHistory();
     function handleSubmit(e) {
         e.preventDefault();

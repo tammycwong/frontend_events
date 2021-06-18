@@ -43,7 +43,18 @@ function UserCard({userData, rsvps, handleOnDelete, onUpdatedUserData}) {
         }
     const rsvpEventArray = rsvps.map((rsvp) => rsvp.event)
     const rsvpArray = rsvpEventArray.map((event) => {
-        return <p>{event.name}<button>Edit Status</button></p>
+        return (
+        <div>
+            {event.name}<button>Edit Status</button>
+            <p>Attendees: </p>
+
+            <select>
+                {event.all_attending_users.map((attendee) => {
+                    return <option>{attendee}</option>
+                })}
+            </select>    
+        </div>
+        )
     })
         if(!userData.events) {
             return null

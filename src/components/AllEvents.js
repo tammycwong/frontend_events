@@ -4,6 +4,7 @@ import EventCard from './EventCard'
 
 function AllEvents({events, createEvent, loggedIn, handleNewRsvp, onDeleteEvent}) {
     const {id} = loggedIn
+    console.log(id)
 
     if(events) {
     const eventCards = events.map((event) => {
