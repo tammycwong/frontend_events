@@ -57,28 +57,23 @@ function UserCard({userData, rsvps, handleOnDelete, onUpdatedUserData}) {
         </div>
         )
     })
- 
-        if(!userData.events) {
-            return null
-        } else {
             userEventCards = userData.events.map((event) => {
-            // const eventDate = event.date
-            // const eventTime = event.time
+            const eventDate = event.date
+            const eventTime = event.time
+
                 return (
                     <div>
                         <p key={event.id}> {event.name} <button onClick={(event)=>handleOnDelete(event.id)}>Delete</button></p>
+                       {eventDate}<br/>
+                       {eventTime}
                        {/* <p>id: {event.id}</p>
                         <p>event: `${userData.event}`</p> 
                         <p>date: {new Date(eventDate)}</p>
                         <p>time: new Date{(eventTime)}</p> */}
+                     
                     </div>
                     )
             })
-        }
-
-
-        
-
     return(
         <div className="">
                 <h3>{username}</h3>
@@ -87,7 +82,7 @@ function UserCard({userData, rsvps, handleOnDelete, onUpdatedUserData}) {
                 <p>{location}</p>
                 <p>interests: {interests}</p>
                 <button onClick={handleShowHide}>Edit Profile</button>
-                {/* <Modal> */}
+
                 {showEditForm ?
             <form onSubmit={handleEdit} className="edit-form">
             <label>Username: </label>
@@ -143,7 +138,6 @@ function UserCard({userData, rsvps, handleOnDelete, onUpdatedUserData}) {
                 <input type="submit" />
             </form>
             : null}
-            {/* </Modal> */}
 
                 <h4>Hosting:</h4>
                 <ul>
@@ -155,11 +149,12 @@ function UserCard({userData, rsvps, handleOnDelete, onUpdatedUserData}) {
                 </ul>
                 <button>Add Friend:</button>
 
-
                 <FullCalendar
-                initialView="dayGridWeek"
+                initialView="dayGridMonth"
                 plugins={[dayGridPlugin]}
                 userData={userData}
+                weekends={true}
+                default={false}
                 />
         </div>
     )

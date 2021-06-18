@@ -41,7 +41,6 @@ function CreateEvent({createEvent, loggedIn}) {
         })
     }
 
-
     return (
         <div className="new-event-form">
             <h1>Create Event</h1>

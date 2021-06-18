@@ -20,6 +20,7 @@ function UserProfile({rsvps, onDeleteEvent, onUpdatedUserData}) {
         });
     },[params.id]);
 
+
     function handleUpdatedUserData(updatedUserData) {
         const objToArray = Object.values(userData)
          objToArray.map(data => {
@@ -39,6 +40,8 @@ function UserProfile({rsvps, onDeleteEvent, onUpdatedUserData}) {
                 rsvps={rsvps} 
                 onDeleteEvent={onDeleteEvent}
                 onUpdatedUserData={handleUpdatedUserData}
+                isLoaded={isLoaded}
+                setIsLoaded={setIsLoaded}
                 />
             </div>
         )
