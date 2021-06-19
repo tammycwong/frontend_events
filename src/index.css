@@ -1,22 +1,86 @@
-/* body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+body {
+  font-family: arial;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-} */
 img {
-  width: 400px;
+  width: 400px;;
+  height: auto;
+  overflow: scroll;
 }
 ul {
   list-style-type: none;
 }
 .nav-bar {
-  text-align: center,
+  text-align: center;
+  color: black;
+}
+button {
+  border-radius: 8px;
+  padding: 5px;
+  font-size: 8pt;
+}
+.user-events {
+  font-size: 10pt;
+  font-family: arial;
+}
+p {
+  font-size: 10pt;
+  font-family: arial;
+  margin: 0;
+}
+h3 {
+  font-size: 24pt;
+  font-weight: normal;
+  letter-spacing: -2px;
+  text-align: center;
+}
+input {
+  width: 250px;
+}
+textarea {
+  width: 350px;
+  height: 100px;
+}
+select {
+  font-size: 10pt;
+  width: 100px;
+}
+h4 {
+  font-size: 26pt;
+  padding: 0;
+  margin: 0;
+}
+.rsvp-attendees {
+  font-size: 10pt;
+  margin: 0;
+}
+.login-form{
+  text-align: center;
+}
+a{
+  color: black;
+  text-decoration: none;
+  justify-content: space-evenly;
+}
+a:hover {
+  border-top: 2px solid black;
+  font-size: 18pt;
+}
+.event-card {
+  display: inline-grid;
+  width: 400px;
+  height: 600px;
+  padding-right: 30px;
+  text-align: center;
+}
+.details {
+
+  overflow: hidden;
+}
+.profile-pic {
+  border-radius: 50%;
+  height: auto;
+  width: 300px;
+}
+.calendar {
+  width: 600px;
 }

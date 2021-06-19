@@ -1,10 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {useHistory} from "react-router-dom"
+import {deleteEvent} from "../deleteEvent"
 
 
 function EventCard({loggedIn, event, handleNewRsvp, userId, onDeleteEvent}) {
-    const {id, name, price, date, time, location, image, description, category, user_id} = event  
+    const {id, name, price, date, time, location, image, description, user_id} = event  
     const history = useHistory();
+    const[showDetails, setShowDetails] = useState()
 
     function handleRsvp () {
         fetch("http://localhost:3000/rsvps", {
@@ -27,36 +29,40 @@ function EventCard({loggedIn, event, handleNewRsvp, userId, onDeleteEvent}) {
         });
     }    
 
+    function handleShowDetails() {
+        setShowDetails(!showDetails)
+    }
 
     function handleOnDelete() {
-        fetch(`http://localhost:3000/events/${id}`, {
-            // ${params.id}`, {
-            method: "DELETE"
-        })
-        .then((r) => r.json())
-        .then(() => {
-            onDeleteEvent(id)
-        })
+        deleteEvent(event.id).then(()=>onDeleteEvent(event.id))
     }
-    
     return (
-        <div>
-            <ul className="card">
+        <div className="event-card">
             <h3>{name}</h3>
             <img src={image} alt={name}/>
-            {/* <p>Category: {category}</p> */}
+            <br/>
+            <button onClick={handleShowDetails}>Details</button>
+            {showDetails ? 
+            <>
             <p>Price: ${price}</p>
             <p>Date: {date}</p>
             <p>Time: {time}</p>
             <p>Location: {location}</p>
-            <p>Description: {description}</p>
+            <p className="details">Description: {description}</p>
             <p>Host: {user_id}</p>
-            {loggedIn.id === event.user_id ? (
+            <br/>
+            </>
+            : null }
+            
+
+            {loggedIn.id === event.user_id ? 
             <button onClick={handleOnDelete} className="delete">Delete</button>
-            ) : null}
-            </ul>
-            <button>Add To Calendar</button>
-            <button onClick={()=>handleRsvp()}>RSVP</button>
+             : null} 
+            
+            
+            {loggedIn.id !== event.user_id ? 
+            <button onClick={handleRsvp}>RSVP</button>
+             : null} 
         
         </div>
         

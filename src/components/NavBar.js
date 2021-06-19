@@ -18,7 +18,7 @@ function NavBar({loggedIn}) {
         <div className="nav-bar">
 
             <Link className="" to="/signup">
-                Sign Up
+                Sign Up  
             </Link>
 
             { loggedIn? 

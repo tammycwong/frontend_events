@@ -43,6 +43,7 @@ function Login({onLogin}) {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 />
+                <br/>
                 <label>Password: </label>
                 <input 
                 name="password" 
@@ -50,6 +51,7 @@ function Login({onLogin}) {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 />
+                <br/>
                 <input type="submit" /> 
             </form>
         </div>

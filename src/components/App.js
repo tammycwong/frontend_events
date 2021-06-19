@@ -7,7 +7,7 @@ import CreateEvent from './CreateEvent'
 import UserProfile from './UserProfile'
 import SignUp from './SignUp'
 
-function App() {
+function App({onDeleteEvent}) {
     const[events, setEvents] = useState([])
     const[loggedIn, setLoggedIn] = useState(false)
     const[rsvps, setRsvps] = useState([])
@@ -44,7 +44,9 @@ function App() {
 
     function onLogin(userInfo) {
         setLoggedIn(userInfo.user)
-        setRsvps(userInfo.user.rsvps)
+        if(userInfo.user) {
+            setRsvps(userInfo.user.rsvps)
+        }
     }
     
     function handleNewRsvp(newRsvp) {
@@ -75,6 +77,7 @@ function App() {
                     <UserProfile 
                     loggedIn={loggedIn} 
                     rsvps={rsvps} 
+                    onDeleteEvent={onDeleteEvent}
                     />
                 </Route>
 

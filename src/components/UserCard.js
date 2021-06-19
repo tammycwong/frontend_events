@@ -2,8 +2,9 @@ import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import v4 from 'uuid/v4'
 
-function UserCard({userData, rsvps, handleOnDelete, onUpdatedUserData}) {
+function UserCard({userData, rsvps, onUpdatedUserData, onDeleteEvent}) {
     let userEventCards = []
     let history = useHistory()
 
@@ -16,6 +17,7 @@ function UserCard({userData, rsvps, handleOnDelete, onUpdatedUserData}) {
     const [updatedLocation, updatedSetLocation] = useState(location);
 
     const [showEditForm, setShowEditForm] = useState(false)
+
     function handleShowHide() {
         setShowEditForm(!showEditForm)
     }
@@ -42,42 +44,63 @@ function UserCard({userData, rsvps, handleOnDelete, onUpdatedUserData}) {
                 history.go(0)
             });      
         }
-    const rsvpEventArray = rsvps.map((rsvp) => rsvp.event)
+    const rsvpEventArray = rsvps.map((rsvp) => {
+        rsvp.event.date = new Date(rsvp.event.date)
+        console.log(rsvp.event.date)
+        rsvp.event.title = rsvp.event.name
+        return rsvp.event
+    })
+
+    const userEventArray = userData.events.map((event) => {
+        return {
+            ...event,
+            date: new Date(event.date),
+            title: event.name
+        }
+    })
+
+    console.log(rsvpEventArray)
     const rsvpArray = rsvpEventArray.map((event) => {
         return (
-        <div>
-            {event.name}<button>Edit Status</button>
-            <p>Attendees: 
+        <div key={event.id}>
+            {event.name}
+            <p className="rsvp-attendees">Attendees: 
             <select>
                 {event.all_attending_users.map((attendee) => {
-                    return <option>{attendee}</option>
-                })}
-            </select>    
+                    return <option key={v4()}>{attendee}</option>
+                })
+                }
+            </select>  
+            <br/>
+            <button>Edit Status</button>  
             </p>
         </div>
         )
     })
+        // console.log(userData.events)
+        if(userData.events) {
             userEventCards = userData.events.map((event) => {
-            const eventDate = event.date
-            const eventTime = event.time
-
+                const eventDate = event.date
+                const eventTime = event.time
                 return (
-                    <div>
-                        <p key={event.id}> {event.name} <button onClick={(event)=>handleOnDelete(event.id)}>Delete</button></p>
-                       {eventDate}<br/>
+                    <div key={event.id}>
+                        <p> {event.name}</p>
+                        <button>Delete</button>
+                       {eventDate}
+                       <br/>
                        {eventTime}
-                       {/* <p>id: {event.id}</p>
-                        <p>event: `${userData.event}`</p> 
-                        <p>date: {new Date(eventDate)}</p>
-                        <p>time: new Date{(eventTime)}</p> */}
+                       {/* <p>name: {event.name}</p>
+                        <p>date: {eventDate}</p>
+                        <p>time: {eventTime}</p>  */}
                      
                     </div>
                     )
             })
+        }
     return(
-        <div className="">
+        <main className="">
                 <h3>{username}</h3>
-                <img src={image} alt={name}/>
+                <img src={image} alt={name} className="profile-pic"/>
                 <p>{name}</p>
                 <p>{location}</p>
                 <p>interests: {interests}</p>
@@ -141,22 +164,23 @@ function UserCard({userData, rsvps, handleOnDelete, onUpdatedUserData}) {
 
                 <h4>Hosting:</h4>
                 <ul>
-                    {userEventCards}
+                     {userEventCards}
                 </ul>
+                
                 <h4>RSVPs:</h4>
-                <ul>
+                <ul className="user-events">
                     {rsvpArray}
                 </ul>
-                <button>Add Friend:</button>
-
+                {/* <button>Add Friend:</button> */}
+                
+                <div className="calendar">
                 <FullCalendar
                 initialView="dayGridMonth"
                 plugins={[dayGridPlugin]}
-                userData={userData}
-                weekends={true}
-                default={false}
+                events={[...rsvpEventArray, ...userEventArray]}
                 />
-        </div>
+                </div>
+        </main>
     )
 }
 export default UserCard

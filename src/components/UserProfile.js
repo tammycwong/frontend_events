@@ -2,9 +2,9 @@ import React, {useState, useEffect} from 'react'
 import { useParams} from 'react-router-dom';
 import UserCard from './UserCard'
 
-function UserProfile({rsvps, onDeleteEvent, onUpdatedUserData}) {
+function UserProfile({rsvps, onDeleteEvent}) {
     const [userData, setUserData] = useState({})
-    const [isLoaded, setIsLoaded] = useState(false)
+    const [isLoaded, setIsLoaded] = useState()
     const params = useParams()
 
     useEffect(() => {
@@ -40,8 +40,6 @@ function UserProfile({rsvps, onDeleteEvent, onUpdatedUserData}) {
                 rsvps={rsvps} 
                 onDeleteEvent={onDeleteEvent}
                 onUpdatedUserData={handleUpdatedUserData}
-                isLoaded={isLoaded}
-                setIsLoaded={setIsLoaded}
                 />
             </div>
         )
@@ -50,7 +48,6 @@ function UserProfile({rsvps, onDeleteEvent, onUpdatedUserData}) {
             <p>Please <a href="/">Login</a> or <a href="/signup">Sign Up</a>to view your profile</p>
         )
     }
-
 }
 
 export default UserProfile
