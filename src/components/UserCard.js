@@ -4,7 +4,7 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import v4 from 'uuid/v4'
 
-function UserCard({userData, rsvps, onUpdatedUserData, onDeleteEvent}) {
+function UserCard({userData, rsvps, onUpdatedUserData}) {
     let userEventCards = []
     let history = useHistory()
 
@@ -77,7 +77,7 @@ function UserCard({userData, rsvps, onUpdatedUserData, onDeleteEvent}) {
         </div>
         )
     })
-        console.log(userData.events)
+        // console.log(userData.events)
         if(userData.events) {
             userEventCards = userData.events.map((event) => {
                 const eventDate = event.date
@@ -137,7 +137,7 @@ function UserCard({userData, rsvps, onUpdatedUserData, onDeleteEvent}) {
                 />
                 <br />
 
-                <label>location</label>
+                <label>Location:</label>
                 <input 
                 name="location" 
                 type="text" 

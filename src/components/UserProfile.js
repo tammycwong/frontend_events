@@ -39,10 +39,10 @@ function UserProfile({rsvps, onDeleteEvent, loggedIn, events}) {
                 <UserCard 
                 userData={userData} 
                 rsvps={rsvps} 
-                onDeleteEvent={onDeleteEvent}
+                // onDeleteEvent={onDeleteEvent}
                 onUpdatedUserData={handleUpdatedUserData}
-                loggedIn={loggedIn}
-                events={events}
+                // loggedIn={loggedIn}
+                // events={events}
                 />
             </div>
         )

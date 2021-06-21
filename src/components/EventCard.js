@@ -75,7 +75,7 @@ function EventCard({loggedIn, event, handleNewRsvp, userId, onDeleteEvent}) {
             
             
             {loggedIn.id !== event.user_id ? 
-            <button onClick={handleRsvp}>🎟  RSVP</button>
+            <button onClick={handleRsvp}>RSVP</button>
              : null} 
         
         </div>

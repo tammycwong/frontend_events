@@ -4,10 +4,11 @@ body {
   margin: auto;
 }
 img {
-  width: 230px;;
-  height: auto;
+  width: 230px;
+  height: 175px;
   overflow: hidden;
   object-fit: fill;
+  margin: 0;
 }
 .nav-bar {
   text-align: right;
@@ -16,9 +17,12 @@ img {
 }
 button {
   border-radius: 8px;
-  padding: 5px;
-  font-size: 8pt;
-  border: 1px solid black;
+  font-size: 10pt;
+  border: none;
+  margin-bottom: 8px;
+}
+button:hover {
+  color: white;
 }
 .user-events {
   font-size: 10pt;
@@ -39,7 +43,7 @@ input {
   background: #f1f1f1;
 }
 textarea {
-  width: 350px;
+  width: 500px;
   height: 100px;
 }
 select {
@@ -73,6 +77,7 @@ a:hover {
   font-size: 18pt;
   padding-bottom: 0;
   margin-bottom: 0;
+  text-align: left;
 }
 .event-card {
   display: inline-grid;
@@ -87,7 +92,6 @@ a:hover {
   overflow: scroll;
 }
 .details {
-  border: 1px solid black;
   text-align: left;
   background-color: white;
   position: absolute;
@@ -99,19 +103,6 @@ a:hover {
 .detail-key {
   text-transform: uppercase;
   color: #ebb16e;
-}
-.fc-event-time{
-  display : none;
-}
-.fc-daygrid-event-dot {
-  display: none;
-}
-.fc-event-title {
-  font-size: 6pt;
-  overflow: scroll;
-  text-decoration: none;
-  color: black;
-  background-color: #ebb16e;
 }
 .delete:hover {
   background-color: #ff6666;
@@ -128,6 +119,19 @@ a:hover {
   margin: 0 auto;
   font-size: 10px;
   clear: both;
+}
+.fc-event-time{
+  display : none;
+}
+.fc-daygrid-event-dot {
+  display: none;
+}
+.fc-event-title {
+  font-size: 6pt;
+  overflow: scroll;
+  text-decoration: none;
+  color: black;
+  background-color: #ebb16e;
 }
 .fc-header-title h2 {
   font-size: .9em;
@@ -176,9 +180,19 @@ a:hover {
 .edit-form {
   position: absolute;
   z-index: 1;
-  transform: translate(650px,-200px);
-  background-color: white;
+  transform: translate(400px,-200px);
+  background-color: #ebb16e;
+  opacity:0;
+  animation: fadeInOut 3s linear forwards;
+  font-size: 16pt;
+  width: 500px;
 }
 .edit-profile-button {
   width: 100px;
+  
 }
+@keyframes fadeInOut {
+  0% { opacity:.5; }
+  50% { opacity:1; } 
+  100% { opacity:.75; } 
+ }
