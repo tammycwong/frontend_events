@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {useHistory} from 'react-router-dom'
+import {useHistory, Link} from 'react-router-dom'
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import v4 from 'uuid/v4'
@@ -52,7 +52,6 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
         }
     const rsvpEventArray = rsvps.map((rsvp) => {
         rsvp.event.date = new Date(rsvp.event.date)
-        // console.log(rsvp.event.date)
         rsvp.event.title = rsvp.event.name
         return rsvp.event
     })
@@ -65,18 +64,18 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
         }
     })
 
-    console.log(rsvpEventArray)
+    // console.log(rsvpEventArray)
     const rsvpArray = rsvpEventArray.map((event) => {
         return (
         <div key={event.id}>
             {event.name}
             <p className="rsvp-attendees">Attendees: 
-            <select>
                 {event.all_attending_users.map((attendee) => {
-                    return <option key={v4()}>{attendee}</option>
+                    console.log(attendee.id)
+                    return <Link key={v4()} to={`/userprofile/${attendee.id}`}><li>{attendee.name}</li></Link>
                 })
                 }
-            </select>  
+
             <br/>
             {/* <button>Edit Status</button>   */}
             </p>
@@ -117,7 +116,7 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
                 <button className="edit-profile-button" onClick={handleShowHide}>Edit Profile</button>
             </div>
 
-            {showEditForm ?
+            {showEditForm ? 
             <form onSubmit={handleEdit} className="edit-form">
             <label>Username: </label>
                 <input 
@@ -170,17 +169,16 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
                 />
                 <br />
                 <input type="submit" />
+                <button onClick={!showEditForm}>Close</button>
             </form>
-            : null}
+                : null }
             </div>
+
                 <div className="user-hosting-events">
                   <h4 className="">Hosting:</h4>
                     <ul className="user-events">
                        {userEventCards}
                     </ul>
-
-                
-            
 
                     <div className="user-hosting-events">
                        <h4 className="">RSVPS:</h4>

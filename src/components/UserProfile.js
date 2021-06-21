@@ -7,6 +7,7 @@ function UserProfile({rsvps, onDeleteEvent, loggedIn, events}) {
     const [isLoaded, setIsLoaded] = useState()
     const params = useParams()
     const [userEvents, setUserEvents] = useState([])
+    const [] = useState()
 
     // GET request
     useEffect(() => {
@@ -24,18 +25,6 @@ function UserProfile({rsvps, onDeleteEvent, loggedIn, events}) {
         });
     },[params.id]);
 
-    // console.log(userEvents)
-    // function handleUpdatedUserData(updatedUserData) {
-    //     const objToArray = Object.values(userData)
-    //      objToArray.map(data => {
-    //         if (data.id === updatedUserData.id) {
-    //             return updatedUserData;
-    //         } else {
-    //             return userData;
-    //         };
-    //     })
-    // }
-
     if(isLoaded) {
         return (
             <div>
@@ -43,7 +32,6 @@ function UserProfile({rsvps, onDeleteEvent, loggedIn, events}) {
                 userData={userData} 
                 rsvps={rsvps} 
                 onDeleteEvent={onDeleteEvent}
-                // onUpdatedUserData={handleUpdatedUserData}
                 loggedIn={loggedIn}
                 events={events}
                 setUserData={setUserData}

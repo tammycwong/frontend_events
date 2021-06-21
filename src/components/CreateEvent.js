@@ -44,7 +44,7 @@ function CreateEvent({createEvent, loggedIn}) {
     return (
         <div className="new-event-form">
             <h1>Create Event</h1>
-              <form onSubmit={handleSubmit}>
+              <form className="new-event-form" onSubmit={handleSubmit}>
                   <label>Title: </label>
                 <input
                     type="text"
@@ -103,6 +103,7 @@ function CreateEvent({createEvent, loggedIn}) {
                     onChange={(e) => setImage(e.target.value)}
                 />
                 <br/>
+                <br/>
 
                 <label>Description: </label>
                 <textarea
@@ -112,6 +113,7 @@ function CreateEvent({createEvent, loggedIn}) {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                 />
+                <br/>
                 <br/>
 
                 <label>Select Category: </label>

@@ -60,8 +60,8 @@ function App({}) {
 
     return (
         <div>
-            {loggedIn ? <NavBar loggedIn={loggedIn}
-            setLoggedIn={setLoggedIn}/> : null}
+            <NavBar loggedIn={loggedIn}
+            setLoggedIn={setLoggedIn}/> 
 
             <Switch>
                 <Route exact path='/'>
@@ -70,16 +70,6 @@ function App({}) {
 
                 <Route exact path="/signup">
                     <SignUp onLogin={onLogin}/>
-                </Route>
-
-
-                <Route exact path='/userprofile/:id'>
-                    <UserProfile 
-                    loggedIn={loggedIn} 
-                    rsvps={rsvps} 
-                    events={events}
-                    onDeleteEvent = {handleDeleteEvent}
-                    />
                 </Route>
 
                 <Route exact path='/allevents'>
@@ -92,12 +82,22 @@ function App({}) {
                     />
                 </Route> 
 
+                <Route exact path='/userprofile/:id'>
+                    <UserProfile 
+                    loggedIn={loggedIn} 
+                    rsvps={rsvps} 
+                    events={events}
+                    onDeleteEvent = {handleDeleteEvent}
+                    />
+                </Route>
+
                 <Route exact path='/createevent'>
                     <CreateEvent 
                     createEvent={handleCreateEvent} 
                     loggedIn={loggedIn} 
                     events={events}
                     />
+
                 </Route>
             </Switch>
         </div>

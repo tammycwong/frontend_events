@@ -52,13 +52,16 @@ function EventCard({loggedIn, event, handleNewRsvp, userId, onDeleteEvent}) {
 
             {showDetails ? 
             <div className="details">
+              <h4 className="detail-key">{name}</h4>
+              <br/>
               <h4 className="detail-key">Price:</h4> <p>${price}</p>
               <h4 className="detail-key">Date:</h4> <p>{date}</p>
               <h4 className="detail-key">Time:</h4> <p>{time}</p>
               <h4 className="detail-key">Location:</h4> <p>{location}</p>
-            
+
               <div className="description">
               <h4 className="detail-key">Description:</h4> <p>{description}</p>
+              <button onClick={handleShowDetails}>Close</button>
             {/* <p>Host: {user_id}</p> */}
               </div>
             </div>
