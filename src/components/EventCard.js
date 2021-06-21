@@ -61,7 +61,10 @@ function EventCard({loggedIn, event, handleNewRsvp, userId, onDeleteEvent}) {
 
               <div className="description">
               <h4 className="detail-key">Description:</h4> <p>{description}</p>
-              <button onClick={handleShowDetails}>Close</button>
+              <button className="button-resizing" onClick={handleShowDetails}>Close</button>
+              {loggedIn.id !== event.user_id ? 
+            <button className="button-resizing" onClick={handleRsvp}>RSVP</button>
+             : null} 
             {/* <p>Host: {user_id}</p> */}
               </div>
             </div>
@@ -92,9 +95,9 @@ function EventCard({loggedIn, event, handleNewRsvp, userId, onDeleteEvent}) {
 
              </form>
              */}
-            {loggedIn.id !== event.user_id ? 
+            {/* {loggedIn.id !== event.user_id ? 
             <button onClick={handleRsvp}>RSVP</button>
-             : null} 
+             : null}  */}
         
         </div>
     )

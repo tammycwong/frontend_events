@@ -34,7 +34,7 @@ function Login({onLogin}) {
     
     return (
         <div className="login-form">
-            <h2>Login:</h2>
+            {/* <h2>Login:</h2> */}
             <form onSubmit={(e) => handleLogin(e) }>
                 <label>Username: </label>
                 <input 
@@ -52,6 +52,7 @@ function Login({onLogin}) {
                 onChange={(e) => setPassword(e.target.value)}
                 />
                 <br/>
+                <p>No Account? <a href="/signup">Sign Up!</a></p>
                 <input type="submit" /> 
             </form>
         </div>

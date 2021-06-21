@@ -12,7 +12,9 @@ function NavBar({loggedIn}) {
     function handleLogOut() {
         localStorage.clear();
         alert("Successfully logged out")
-        history.go(1)
+        history.push("/")
+        history.go(0)
+        // window.location.reload();
     }
 
     return (
@@ -22,18 +24,30 @@ function NavBar({loggedIn}) {
                 Sign Up  
             </Link>
 
-            { loggedIn? 
+            { loggedIn ? 
             <Link to={`/userprofile/${loggedIn.id}`}>
                 Profile
             </Link> 
+             : null }
+
+            { loggedIn ? 
+            <Link className="" to="/createevent">
+             Create Event
+            </Link>
             : null }
+
+            { !loggedIn ? 
+                <Link className="" to="/">
+                    Login
+                </Link>
+            : null }
+            
+             
 
             <Link className="" to="/allevents">
                 All Events
             </Link>
-            <Link className="" to="/createevent">
-                Create Event
-            </Link>
+
 
             {/* <select className="filter">
                 <option>Category:</option>
@@ -48,9 +62,11 @@ function NavBar({loggedIn}) {
                 <option>Entertainment</option>
             </select> */}
 
+            { loggedIn ?
             <Link onClick={handleLogOut} to="/">
                 Log out
             </Link>
+            : null}
         </div>
     )
 }

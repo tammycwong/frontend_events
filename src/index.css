@@ -120,6 +120,10 @@ a:hover {
   background-color: white;
   width: 150px;
 }
+.button-resizing {
+  padding: 20px;
+  margin-right: 20px;
+}
 
 /* FORMS */
 .new-event-form {
@@ -131,6 +135,7 @@ a:hover {
 }
 .login-form{
   text-align: center;
+  padding-top: 50px;
 }
 
 /* CALENDAR */

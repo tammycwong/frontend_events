@@ -113,7 +113,7 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
                 <p>{location}</p>
                 <p>Interests: {interests}</p>
                 <br/>
-                <button className="edit-profile-button" onClick={handleShowHide}>Edit Profile</button>
+                <button className="button-resizing" onClick={handleShowHide}>Edit Profile</button>
             </div>
 
             {showEditForm ? 
@@ -169,7 +169,7 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
                 />
                 <br />
                 <input type="submit" />
-                <button onClick={!showEditForm}>Close</button>
+                <button className="button-resizing" onClick={!showEditForm}>Close</button>
             </form>
                 : null }
             </div>
