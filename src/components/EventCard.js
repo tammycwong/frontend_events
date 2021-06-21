@@ -43,7 +43,7 @@ function EventCard({loggedIn, event, handleNewRsvp, userId, onDeleteEvent}) {
     }
     return (
         <div className="event-card">
-            <h3>{name}
+            <h3 className="event-name">{name}
             <br/>
             {loggedIn.id === event.user_id ? 
             <button onClick={handleOnDelete} className="delete">❌  REMOVE</button>
@@ -55,21 +55,23 @@ function EventCard({loggedIn, event, handleNewRsvp, userId, onDeleteEvent}) {
 
 
             {showDetails ? 
-            <>
-            <p>Price: ${price}</p>
-            <p>Date: {date}</p>
-            <p>Time: {time}</p>
-            <p>Location: {location}</p>
-            <p className="details">Description: {description}</p>
-            <p>Host: {user_id}</p>
-            <br/>
-            </>
+            <div className="details">
+              <h4 className="detail-key">Price:</h4> <p>${price}</p>
+              <h4 className="detail-key">Date:</h4> <p>{date}</p>
+              <h4 className="detail-key">Time:</h4> <p>{time}</p>
+              <h4 className="detail-key">Location:</h4> <p>{location}</p>
+            
+              <div className="description">
+              <h4 className="detail-key">Description:</h4> <p>{description}</p>
+            {/* <p>Host: {user_id}</p> */}
+              </div>
+            </div>
             : null }
             
 
-            {loggedIn.id === event.user_id ? 
+            {/* {loggedIn.id === event.user_id ? 
             <button onClick={handleOnDelete} className="delete">❌  REMOVE</button>
-             : null} 
+             : null}  */}
             
             
             {loggedIn.id !== event.user_id ? 
@@ -77,8 +79,6 @@ function EventCard({loggedIn, event, handleNewRsvp, userId, onDeleteEvent}) {
              : null} 
         
         </div>
-        
-
     )
 }
 export default EventCard

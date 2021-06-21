@@ -1,17 +1,14 @@
 body {
   font-family: Helvetica;
-  text-align: center;
-  /* width: 100%; */
+  max-width: 60%;
+  margin: auto;
 }
 img {
-  width: 200px;;
+  width: 230px;;
   height: auto;
   overflow: hidden;
   object-fit: fill;
 }
-/* ul {
-  list-style-type: none;
-} */
 .nav-bar {
   text-align: right;
   color: black;
@@ -21,22 +18,25 @@ button {
   border-radius: 8px;
   padding: 5px;
   font-size: 8pt;
+  border: 1px solid black;
 }
 .user-events {
   font-size: 10pt;
 }
 p {
-  font-size: 10pt;
+  font-size: 14pt;
   margin: 0;
 }
 h3 {
-  font-size: 18pt;
+  font-size: 24pt;
   font-weight: normal;
   letter-spacing: -1.5px;
   text-align: center;
 }
 input {
   width: 250px;
+  border: none;
+  background: #f1f1f1;
 }
 textarea {
   width: 350px;
@@ -47,8 +47,8 @@ select {
   width: 100px;
 }
 h4 {
-  font-size: 18pt;
-  padding: 0;
+  font-size: 13pt;
+  padding: auto;
   margin: 0;
 }
 .rsvp-attendees {
@@ -62,26 +62,44 @@ h4 {
 a {
   color: black;
   text-decoration: none;
-  /* justify-content: space-evenly; */
-  font-size: 12pt;
+  font-size: 16pt;
   padding-right: 30px;
 }
 a:hover {
   border-top: 2px solid black;
+  color: #ff6666;
+}
+.event-name {
   font-size: 18pt;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 .event-card {
   display: inline-grid;
   width: 200px;
-  height: 300px;
-  padding-right: 30px;
+  height: 400px;
+  padding-right: 50px;
   text-align: center;
   border: 1px #e6e6e6 solid;
   padding-left: 25px;
 }
-/* .details {
+.description {
   overflow: scroll;
-} */
+}
+.details {
+  border: 1px solid black;
+  text-align: left;
+  background-color: white;
+  position: absolute;
+  z-index: 50;
+  transform: translate(100px,50px);
+  width: 300px;
+  letter-spacing: 2px;
+}
+.detail-key {
+  text-transform: uppercase;
+  color: #ebb16e;
+}
 .fc-event-time{
   display : none;
 }
@@ -95,14 +113,12 @@ a:hover {
   color: black;
   background-color: #ebb16e;
 }
-/* .fc-event-title:hover{
-  font-size: 12pt;
- } */
 .delete:hover {
   background-color: #ff6666;
 }
 .delete {
   background-color: white;
+  width: 150px;
 }
 
 
@@ -111,6 +127,7 @@ a:hover {
   width: 600px;
   margin: 0 auto;
   font-size: 10px;
+  clear: both;
 }
 .fc-header-title h2 {
   font-size: .9em;
@@ -135,40 +152,33 @@ a:hover {
 }
 /* FLEXBOX */
 .user-card {
-  display:flex;
-  max-width: 80%
-}
-.flex-container{
-  /* display: flex; */
-  flex-direction: column;
-  margin: 0;
-  padding: 0;
-  /* max-width: 80%; */
-  border: 1px solid red;
-  max-width: 80%
+  max-width: 100%
 }
 .profile-info {
-  margin: auto;
+  margin: 0 auto;
   padding-right: 0;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+  width: 100%;
+  clear: both;
+  display: table;
+  content: "";
 }
 .profile-pic {
   border-radius: 50%;
   height: auto;
   width: 200px;
-  padding-right: 0;
-  flex: 1;
+  padding-right: 15px;
+  float: left;
+  padding-left: 300px;
 }
 .user-hosting-events {
-  flex: 1;
   display: flex;
-  flex-direction: column;
 }
-.user-events {
-  flex: 1;
+.edit-form {
+  position: absolute;
+  z-index: 1;
+  transform: translate(650px,-200px);
+  background-color: white;
 }
-.user-rsvp {
-  flex: 1;
+.edit-profile-button {
+  width: 100px;
 }

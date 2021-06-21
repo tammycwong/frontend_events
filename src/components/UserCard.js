@@ -77,7 +77,7 @@ function UserCard({userData, rsvps, onUpdatedUserData, onDeleteEvent}) {
         </div>
         )
     })
-        // console.log(userData.events)
+        console.log(userData.events)
         if(userData.events) {
             userEventCards = userData.events.map((event) => {
                 const eventDate = event.date
@@ -106,7 +106,8 @@ function UserCard({userData, rsvps, onUpdatedUserData, onDeleteEvent}) {
                 <p>{name}</p>
                 <p>{location}</p>
                 <p>interests: {interests}</p>
-                <button onClick={handleShowHide}>Edit Profile</button>
+                <br/>
+                <button className="edit-profile-button" onClick={handleShowHide}>Edit Profile</button>
             </div>
 
             {showEditForm ?
@@ -170,20 +171,25 @@ function UserCard({userData, rsvps, onUpdatedUserData, onDeleteEvent}) {
                     <ul className="user-events">
                        {userEventCards}
                     </ul>
-                    <div className="user-rsvp-events">
+                    <div className="user-hosting-events">
                        <h4 className="">RSVPS:</h4>
                           <ul className="user-rsvp">
                             {rsvpArray}
                            </ul>
                     </div>
                 </div> 
-                <button>Add Friend:</button>
+                {/* <button>Add Friend:</button> */}
                 
                 <div className="calendar">
                   <FullCalendar
                     initialView="dayGridMonth"
                     plugins={[dayGridPlugin]}
                     events={[...rsvpEventArray, ...userEventArray]}
+                    // eventClick={
+                    //     function(rsvps) {
+                    //         alert(arg.event.title)
+                    //     }
+                    // }
                   />
                 </div>
         </main>
