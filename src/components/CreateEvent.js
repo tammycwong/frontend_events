@@ -134,7 +134,7 @@ function CreateEvent({createEvent, loggedIn}) {
 
                 <br/>
                 {loggedIn ? (
-                <button type="submit">Create</button>
+                <button type="submit"> 📅  Create</button>
                  ) : alert("please login or sign up") }
               </form>
         </div>

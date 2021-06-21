@@ -7,7 +7,7 @@ import CreateEvent from './CreateEvent'
 import UserProfile from './UserProfile'
 import SignUp from './SignUp'
 
-function App({onDeleteEvent}) {
+function App({}) {
     const[events, setEvents] = useState([])
     const[loggedIn, setLoggedIn] = useState(false)
     const[rsvps, setRsvps] = useState([])
@@ -77,7 +77,7 @@ function App({onDeleteEvent}) {
                     <UserProfile 
                     loggedIn={loggedIn} 
                     rsvps={rsvps} 
-                    onDeleteEvent={onDeleteEvent}
+                    events={events}
                     />
                 </Route>
 
@@ -95,6 +95,7 @@ function App({onDeleteEvent}) {
                     <CreateEvent 
                     createEvent={handleCreateEvent} 
                     loggedIn={loggedIn} 
+                    events={events}
                     />
                 </Route>
             </Switch>

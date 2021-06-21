@@ -1,17 +1,21 @@
 body {
-  font-family: arial;
+  font-family: Helvetica;
+  text-align: center;
+  /* width: 100%; */
 }
 img {
-  width: 400px;;
+  width: 200px;;
   height: auto;
-  overflow: scroll;
+  overflow: hidden;
+  object-fit: fill;
 }
-ul {
+/* ul {
   list-style-type: none;
-}
+} */
 .nav-bar {
-  text-align: center;
+  text-align: right;
   color: black;
+  border-bottom: 1px solid black;
 }
 button {
   border-radius: 8px;
@@ -20,17 +24,15 @@ button {
 }
 .user-events {
   font-size: 10pt;
-  font-family: arial;
 }
 p {
   font-size: 10pt;
-  font-family: arial;
   margin: 0;
 }
 h3 {
-  font-size: 24pt;
+  font-size: 18pt;
   font-weight: normal;
-  letter-spacing: -2px;
+  letter-spacing: -1.5px;
   text-align: center;
 }
 input {
@@ -45,21 +47,24 @@ select {
   width: 100px;
 }
 h4 {
-  font-size: 26pt;
+  font-size: 18pt;
   padding: 0;
   margin: 0;
 }
 .rsvp-attendees {
-  font-size: 10pt;
+  font-size: 12pt;
   margin: 0;
+  letter-spacing: 0;
 }
 .login-form{
   text-align: center;
 }
-a{
+a {
   color: black;
   text-decoration: none;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
+  font-size: 12pt;
+  padding-right: 30px;
 }
 a:hover {
   border-top: 2px solid black;
@@ -67,20 +72,103 @@ a:hover {
 }
 .event-card {
   display: inline-grid;
-  width: 400px;
-  height: 600px;
+  width: 200px;
+  height: 300px;
   padding-right: 30px;
   text-align: center;
+  border: 1px #e6e6e6 solid;
+  padding-left: 25px;
 }
-.details {
+/* .details {
+  overflow: scroll;
+} */
+.fc-event-time{
+  display : none;
+}
+.fc-daygrid-event-dot {
+  display: none;
+}
+.fc-event-title {
+  font-size: 6pt;
+  overflow: scroll;
+  text-decoration: none;
+  color: black;
+  background-color: #ebb16e;
+}
+/* .fc-event-title:hover{
+  font-size: 12pt;
+ } */
+.delete:hover {
+  background-color: #ff6666;
+}
+.delete {
+  background-color: white;
+}
 
+
+/* CALENDAR */
+.calendar {
+  width: 600px;
+  margin: 0 auto;
+  font-size: 10px;
+}
+.fc-header-title h2 {
+  font-size: .9em;
+  white-space: normal !important;
+}
+.fc-view-month .fc-event, .fc-view-agendaWeek .fc-event {
+  font-size: 0;
   overflow: hidden;
+  height: 2px;
+}
+.fc-view-agendaWeek .fc-event-vert {
+  font-size: 0;
+  overflow: hidden;
+  width: 2px !important;
+}
+.fc-agenda-axis {
+  width: 20px !important;
+  font-size: .7em;
+}
+.fc-button-content {
+  padding: 0;
+}
+/* FLEXBOX */
+.user-card {
+  display:flex;
+  max-width: 80%
+}
+.flex-container{
+  /* display: flex; */
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  /* max-width: 80%; */
+  border: 1px solid red;
+  max-width: 80%
+}
+.profile-info {
+  margin: auto;
+  padding-right: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 .profile-pic {
   border-radius: 50%;
   height: auto;
-  width: 300px;
+  width: 200px;
+  padding-right: 0;
+  flex: 1;
 }
-.calendar {
-  width: 600px;
+.user-hosting-events {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.user-events {
+  flex: 1;
+}
+.user-rsvp {
+  flex: 1;
 }

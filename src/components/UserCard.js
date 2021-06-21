@@ -46,7 +46,7 @@ function UserCard({userData, rsvps, onUpdatedUserData, onDeleteEvent}) {
         }
     const rsvpEventArray = rsvps.map((rsvp) => {
         rsvp.event.date = new Date(rsvp.event.date)
-        console.log(rsvp.event.date)
+        // console.log(rsvp.event.date)
         rsvp.event.title = rsvp.event.name
         return rsvp.event
     })
@@ -72,7 +72,7 @@ function UserCard({userData, rsvps, onUpdatedUserData, onDeleteEvent}) {
                 }
             </select>  
             <br/>
-            <button>Edit Status</button>  
+            {/* <button>Edit Status</button>   */}
             </p>
         </div>
         )
@@ -84,8 +84,8 @@ function UserCard({userData, rsvps, onUpdatedUserData, onDeleteEvent}) {
                 const eventTime = event.time
                 return (
                     <div key={event.id}>
-                        <p> {event.name}</p>
-                        <button>Delete</button>
+                        <p className="user-events"> {event.name}</p>
+                        {/* <button>Delete</button> */}
                        {eventDate}
                        <br/>
                        {eventTime}
@@ -98,15 +98,18 @@ function UserCard({userData, rsvps, onUpdatedUserData, onDeleteEvent}) {
             })
         }
     return(
-        <main className="">
+        <main className="user-card">
+          <div className="flex-container">
+            <div className="profile-info">
                 <h3>{username}</h3>
                 <img src={image} alt={name} className="profile-pic"/>
                 <p>{name}</p>
                 <p>{location}</p>
                 <p>interests: {interests}</p>
                 <button onClick={handleShowHide}>Edit Profile</button>
+            </div>
 
-                {showEditForm ?
+            {showEditForm ?
             <form onSubmit={handleEdit} className="edit-form">
             <label>Username: </label>
                 <input 
@@ -161,24 +164,27 @@ function UserCard({userData, rsvps, onUpdatedUserData, onDeleteEvent}) {
                 <input type="submit" />
             </form>
             : null}
-
-                <h4>Hosting:</h4>
-                <ul>
-                     {userEventCards}
-                </ul>
-                
-                <h4>RSVPs:</h4>
-                <ul className="user-events">
-                    {rsvpArray}
-                </ul>
-                {/* <button>Add Friend:</button> */}
+            </div>
+                <div className="user-hosting-events">
+                  <h4 className="">Hosting:</h4>
+                    <ul className="user-events">
+                       {userEventCards}
+                    </ul>
+                    <div className="user-rsvp-events">
+                       <h4 className="">RSVPS:</h4>
+                          <ul className="user-rsvp">
+                            {rsvpArray}
+                           </ul>
+                    </div>
+                </div> 
+                <button>Add Friend:</button>
                 
                 <div className="calendar">
-                <FullCalendar
-                initialView="dayGridMonth"
-                plugins={[dayGridPlugin]}
-                events={[...rsvpEventArray, ...userEventArray]}
-                />
+                  <FullCalendar
+                    initialView="dayGridMonth"
+                    plugins={[dayGridPlugin]}
+                    events={[...rsvpEventArray, ...userEventArray]}
+                  />
                 </div>
         </main>
     )

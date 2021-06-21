@@ -1,3 +1,4 @@
+import { Dropdown } from 'bootstrap';
 import React from 'react'
 import {Link, useHistory} from 'react-router-dom'
 
@@ -34,7 +35,7 @@ function NavBar({loggedIn}) {
                 Create Event
             </Link>
 
-            <select className="filter">
+            {/* <select className="filter">
                 <option>Category:</option>
                 <option>Workout</option>
                 <option>Nightlife</option>
@@ -45,7 +46,7 @@ function NavBar({loggedIn}) {
                 <option>Personal</option>
                 <option>Food</option>
                 <option>Entertainment</option>
-            </select>
+            </select> */}
 
             <Link onClick={handleLogOut} to="/">
                 Log out
