@@ -1,15 +1,11 @@
 import React, {useState} from 'react'
 import {useHistory} from "react-router-dom"
 import {deleteEvent} from "../deleteEvent"
-// import { Modal, Button } from "react-bootstrap";
 
 function EventCard({loggedIn, event, handleNewRsvp, userId, onDeleteEvent}) {
     const {id, name, price, date, time, location, image, description, user_id} = event  
     const history = useHistory();
     const[showDetails, setShowDetails] = useState()
-    // const[showModal, setShow] = useState(false);
-    // const handleClose = () => setShow(false);
-    // const handleSHow=() => setShow
 
     function handleRsvp () {
         fetch("http://localhost:3000/rsvps", {
@@ -72,8 +68,27 @@ function EventCard({loggedIn, event, handleNewRsvp, userId, onDeleteEvent}) {
             {/* {loggedIn.id === event.user_id ? 
             <button onClick={handleOnDelete} className="delete">❌  REMOVE</button>
              : null}  */}
-            
-            
+             {/* <form>
+                 <div>
+                  <input type="radio" id="" name="yes" value="no" checked>
+                  <label>yes</label>
+                 </input>
+                </div>
+
+                <div>
+                <input type="radio" id="" name="no" value="no">
+                  <label>no</label>
+                 </input>
+                </div>
+
+                <div>
+                <input type="radio" id="" name="maybe">
+                  <label>maybe</label>
+                 </input>
+                </div>
+
+             </form>
+             */}
             {loggedIn.id !== event.user_id ? 
             <button onClick={handleRsvp}>RSVP</button>
              : null} 

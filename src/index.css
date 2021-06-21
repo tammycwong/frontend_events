@@ -2,6 +2,7 @@ body {
   font-family: Helvetica;
   max-width: 60%;
   margin: auto;
+  padding-top: 30px;
 }
 img {
   width: 230px;
@@ -28,7 +29,7 @@ button:hover {
   font-size: 10pt;
 }
 p {
-  font-size: 14pt;
+  font-size: 12pt;
   margin: 0;
 }
 h3 {
@@ -41,6 +42,8 @@ input {
   width: 250px;
   border: none;
   background: #f1f1f1;
+  height: 30px;
+  margin: 5px;
 }
 textarea {
   width: 500px;
@@ -93,12 +96,13 @@ a:hover {
 }
 .details {
   text-align: left;
-  background-color: white;
+  background-color: #F9F9F9;  
   position: absolute;
   z-index: 50;
   transform: translate(100px,50px);
   width: 300px;
   letter-spacing: 2px;
+  padding: 20px;
 }
 .detail-key {
   text-transform: uppercase;
@@ -115,7 +119,7 @@ a:hover {
 
 /* CALENDAR */
 .calendar {
-  width: 600px;
+  width: 700px;
   margin: 0 auto;
   font-size: 10px;
   clear: both;
@@ -167,7 +171,7 @@ a:hover {
   content: "";
 }
 .profile-pic {
-  border-radius: 50%;
+  border-radius: 50px;
   height: auto;
   width: 200px;
   padding-right: 15px;
@@ -194,5 +198,5 @@ a:hover {
 @keyframes fadeInOut {
   0% { opacity:.5; }
   50% { opacity:1; } 
-  100% { opacity:.75; } 
+  100% { opacity:.80; } 
  }

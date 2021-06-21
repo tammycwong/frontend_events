@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-// import {useHistory} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 
 function SignUp({onLogin}) {
 
@@ -9,6 +9,8 @@ function SignUp({onLogin}) {
     const [interests, setInterests] = useState("");
     const [image, setImage] = useState("");
     const [location, setLocation] = useState("");
+
+    let history = useHistory();
 
     let signUp= (e) => {
         e.preventDefault()
@@ -31,6 +33,7 @@ function SignUp({onLogin}) {
             .then((userInfo) => {
                 localStorage.token = userInfo.token;
                 onLogin(userInfo)
+                history.push('/')
 
             })
     }
@@ -64,7 +67,7 @@ function SignUp({onLogin}) {
                 />
                 
                 <br />
-                <label>location</label>
+                <label>Location:</label>
                 <input 
                 name="location" 
                 type="text" 

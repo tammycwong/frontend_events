@@ -78,6 +78,7 @@ function App({}) {
                     loggedIn={loggedIn} 
                     rsvps={rsvps} 
                     events={events}
+                    onDeleteEvent = {handleDeleteEvent}
                     />
                 </Route>
 

@@ -3,8 +3,9 @@ import {useHistory} from 'react-router-dom'
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import v4 from 'uuid/v4'
+import {deleteEvent} from "../deleteEvent"
 
-function UserCard({userData, rsvps, onUpdatedUserData}) {
+function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setUserEvents}) {
     let userEventCards = []
     let history = useHistory()
 
@@ -20,6 +21,11 @@ function UserCard({userData, rsvps, onUpdatedUserData}) {
 
     function handleShowHide() {
         setShowEditForm(!showEditForm)
+    }
+
+    function handleOnDelete(deletedEvent) {
+        setUserEvents([...userEvents].filter((event)=> event.id !== deletedEvent.id))
+        deleteEvent(deletedEvent.id).then(()=>onDeleteEvent(deletedEvent.id))
     }
 
     function handleEdit(e) {
@@ -40,7 +46,7 @@ function UserCard({userData, rsvps, onUpdatedUserData}) {
         })
             .then((r) => r.json())
             .then((updatedUserData) => {
-                onUpdatedUserData(updatedUserData);
+                setUserData(updatedUserData)
                 history.go(0)
             });      
         }
@@ -79,7 +85,7 @@ function UserCard({userData, rsvps, onUpdatedUserData}) {
     })
         // console.log(userData.events)
         if(userData.events) {
-            userEventCards = userData.events.map((event) => {
+            userEventCards = userEvents.map((event) => {
                 const eventDate = event.date
                 const eventTime = event.time
                 return (
@@ -92,6 +98,7 @@ function UserCard({userData, rsvps, onUpdatedUserData}) {
                        {/* <p>name: {event.name}</p>
                         <p>date: {eventDate}</p>
                         <p>time: {eventTime}</p>  */}
+                        <button onClick={()=>handleOnDelete(event)} className="delete">❌  REMOVE</button>
                      
                     </div>
                     )
@@ -105,7 +112,7 @@ function UserCard({userData, rsvps, onUpdatedUserData}) {
                 <img src={image} alt={name} className="profile-pic"/>
                 <p>{name}</p>
                 <p>{location}</p>
-                <p>interests: {interests}</p>
+                <p>Interests: {interests}</p>
                 <br/>
                 <button className="edit-profile-button" onClick={handleShowHide}>Edit Profile</button>
             </div>
@@ -171,6 +178,10 @@ function UserCard({userData, rsvps, onUpdatedUserData}) {
                     <ul className="user-events">
                        {userEventCards}
                     </ul>
+
+                
+            
+
                     <div className="user-hosting-events">
                        <h4 className="">RSVPS:</h4>
                           <ul className="user-rsvp">

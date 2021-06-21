@@ -6,6 +6,7 @@ function UserProfile({rsvps, onDeleteEvent, loggedIn, events}) {
     const [userData, setUserData] = useState({})
     const [isLoaded, setIsLoaded] = useState()
     const params = useParams()
+    const [userEvents, setUserEvents] = useState([])
 
     // GET request
     useEffect(() => {
@@ -16,22 +17,24 @@ function UserProfile({rsvps, onDeleteEvent, loggedIn, events}) {
         })
         .then((r) => r.json())
         .then((userData) => {
+            setUserEvents(userData.user.events)
             setUserData(userData.user)
+            console.log(userData)
             setIsLoaded(true)
         });
     },[params.id]);
 
-
-    function handleUpdatedUserData(updatedUserData) {
-        const objToArray = Object.values(userData)
-         objToArray.map(data => {
-            if (data.id === updatedUserData.id) {
-                return updatedUserData;
-            } else {
-                return userData;
-            };
-        })
-    }
+    // console.log(userEvents)
+    // function handleUpdatedUserData(updatedUserData) {
+    //     const objToArray = Object.values(userData)
+    //      objToArray.map(data => {
+    //         if (data.id === updatedUserData.id) {
+    //             return updatedUserData;
+    //         } else {
+    //             return userData;
+    //         };
+    //     })
+    // }
 
     if(isLoaded) {
         return (
@@ -39,10 +42,13 @@ function UserProfile({rsvps, onDeleteEvent, loggedIn, events}) {
                 <UserCard 
                 userData={userData} 
                 rsvps={rsvps} 
-                // onDeleteEvent={onDeleteEvent}
-                onUpdatedUserData={handleUpdatedUserData}
-                // loggedIn={loggedIn}
-                // events={events}
+                onDeleteEvent={onDeleteEvent}
+                // onUpdatedUserData={handleUpdatedUserData}
+                loggedIn={loggedIn}
+                events={events}
+                setUserData={setUserData}
+                userEvents = {userEvents}
+                setUserEvents = {setUserEvents}
                 />
             </div>
         )
