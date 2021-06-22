@@ -2,8 +2,20 @@ import React from 'react'
 import EventCard from './EventCard'
 
 
-function AllEvents({events, createEvent, loggedIn, handleNewRsvp, onDeleteEvent}) {
+function AllEvents({events, createEvent, loggedIn, handleNewRsvp, onDeleteEvent, onEventChange, resetFilter}) {
     const {id} = loggedIn
+
+    function handleCategory(e) {
+        onEventChange(e.target.value)
+    }
+
+    function resetFilter() {
+        onEventChange("All")
+    }
+
+    function routeToCreateEvent() {
+        window.location='/createevent';
+    }
 
     if(events) {
     const eventCards = events.map((event) => {
@@ -16,18 +28,41 @@ function AllEvents({events, createEvent, loggedIn, handleNewRsvp, onDeleteEvent}
             userId = {id}
             loggedIn={loggedIn}
             onDeleteEvent={onDeleteEvent}
+            onEventChange={onEventChange}
             />
         )
     })
 
         return (
             <div>
-                <p className="cards">{eventCards}</p>
+                { loggedIn ?
+                <select onChange={handleCategory} className="filter">
+                <option value="All" onClick={resetFilter}>All</option>
+                <option value="Class">Class</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Food">Food</option>
+                <option value="Free">Free</option>
+                <option value="Games">Games</option>
+                <option value="Nightlife">Nightlife</option>
+                <option value="Outdoors">Outdoors</option>
+                <option value="Personal">Personal</option>
+                <option value="Workout">Workout</option>
+                </select>
+                : null }
+
+                { loggedIn ?
+                <button onClick={resetFilter} className="reset-button">Reset</button>
+                : null}
+                <br/>
+
+                {eventCards}
+                <button className="create-event-button" onClick={routeToCreateEvent}><p className="plus">+</p></button>
             </div>
         )
     } else {
         return null
-    }    
+        
+    } 
 }
 
 export default AllEvents

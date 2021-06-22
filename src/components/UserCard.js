@@ -5,7 +5,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import v4 from 'uuid/v4'
 import {deleteEvent} from "../deleteEvent"
 
-function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setUserEvents}) {
+function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setUserEvents, loggedIn}) {
     let userEventCards = []
     let history = useHistory()
 
@@ -18,6 +18,11 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
     const [updatedLocation, updatedSetLocation] = useState(location);
 
     const [showEditForm, setShowEditForm] = useState(false)
+    const [showRsvp, setShowRsvp] = useState (false)
+
+    // function handleShowRsvp() {
+    //     setShowRsvp(!showRsvp)
+    // }
 
     function handleShowHide() {
         setShowEditForm(!showEditForm)
@@ -64,60 +69,67 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
         }
     })
 
-    // console.log(rsvpEventArray)
+
     const rsvpArray = rsvpEventArray.map((event) => {
         return (
-        <div key={event.id}>
+        <div key={event.id} className="">
             {event.name}
-            <p className="rsvp-attendees">Attendees: 
+            <div className="">
+                <p>Attendees: 
                 {event.all_attending_users.map((attendee) => {
-                    console.log(attendee.id)
-                    return <Link key={v4()} to={`/userprofile/${attendee.id}`}><li>{attendee.name}</li></Link>
+                    return <Link key={v4()} className="" to={`/userprofile/${attendee.id}`}><li>{attendee.name}</li></Link>
                 })
                 }
-
-            <br/>
-            {/* <button>Edit Status</button>   */}
             </p>
-        </div>
+            </div>
+            </div>
         )
     })
-        // console.log(userData.events)
+
+
         if(userData.events) {
             userEventCards = userEvents.map((event) => {
                 const eventDate = event.date
                 const eventTime = event.time
+                console.log(event.user_id)
                 return (
-                    <div key={event.id}>
+                    <div className="float-child">
+                      <div key={event.id}>
                         <p className="user-events"> {event.name}</p>
                         {/* <button>Delete</button> */}
                        {eventDate}
-                       <br/>
                        {eventTime}
-                       {/* <p>name: {event.name}</p>
-                        <p>date: {eventDate}</p>
-                        <p>time: {eventTime}</p>  */}
+
+                        {loggedIn.id === event.user_id ? 
                         <button onClick={()=>handleOnDelete(event)} className="delete">❌  REMOVE</button>
+                        : null }
                      
+                      </div>
                     </div>
+                    
                     )
             })
+            
         }
     return(
         <main className="user-card">
-          <div className="flex-container">
-            <div className="profile-info">
-                <h3>{username}</h3>
-                <img src={image} alt={name} className="profile-pic"/>
-                <p>{name}</p>
-                <p>{location}</p>
-                <p>Interests: {interests}</p>
+            <div className="">
+              <h3>@{username} <button className="button-resizing" onClick={handleShowHide}>Edit Profile</button> </h3> 
+              <div className="profile-pic-div">
+              <img src={image} alt={name} className="profile-pic"/>
+              </div>
+
+                <div className="profile-description-div">
+                  <p className="profile-description">{name}</p>
+                  <p>{location}</p>
+                  <p>Interests: {interests}</p>
+                </div>
+
                 <br/>
-                <button className="button-resizing" onClick={handleShowHide}>Edit Profile</button>
-            </div>
 
             {showEditForm ? 
             <form onSubmit={handleEdit} className="edit-form">
+                <button onClick={!showEditForm} align="right">X</button><br/>
             <label>Username: </label>
                 <input 
                 name="username" 
@@ -169,16 +181,19 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
                 />
                 <br />
                 <input type="submit" />
-                <button className="button-resizing" onClick={!showEditForm}>Close</button>
             </form>
                 : null }
             </div>
+
 
                 <div className="user-hosting-events">
                   <h4 className="">Hosting:</h4>
                     <ul className="user-events">
                        {userEventCards}
                     </ul>
+                </div>
+
+
 
                     <div className="user-hosting-events">
                        <h4 className="">RSVPS:</h4>
@@ -186,19 +201,13 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
                             {rsvpArray}
                            </ul>
                     </div>
-                </div> 
-                {/* <button>Add Friend:</button> */}
+
                 
                 <div className="calendar">
                   <FullCalendar
                     initialView="dayGridMonth"
                     plugins={[dayGridPlugin]}
                     events={[...rsvpEventArray, ...userEventArray]}
-                    // eventClick={
-                    //     function(rsvps) {
-                    //         alert(arg.event.title)
-                    //     }
-                    // }
                   />
                 </div>
         </main>

@@ -52,8 +52,9 @@ function Login({onLogin}) {
                 onChange={(e) => setPassword(e.target.value)}
                 />
                 <br/>
-                <p>No Account? <a href="/signup">Sign Up!</a></p>
+
                 <input type="submit" /> 
+                <p>Not a member? <a href="/signup">Sign up now</a></p>
             </form>
         </div>
     )

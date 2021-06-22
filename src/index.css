@@ -1,16 +1,20 @@
 /* HTML ELEMENTS */
 body {
   font-family: Helvetica;
-  max-width: 60%;
+  max-width: 75%;
   margin: auto;
   padding-top: 30px;
+  padding-bottom: 40px;
 }
 img {
-  width: 230px;
-  height: 175px;
+  width: 320px;
+  height: 200px;
   overflow: hidden;
   object-fit: fill;
   margin: 0;
+  /* border-radius: 8px; */
+  padding-top: 20px;
+  /* border-radius: 50px; */
 }
 button {
   border-radius: 8px;
@@ -19,35 +23,50 @@ button {
   margin-bottom: 8px;
 }
 button:hover {
-  color: white;
+  color: #ebb16e;
 }
 p {
-  font-size: 12pt;
+  font-size: 14pt;
   margin: 0;
+  letter-spacing: 0;
 }
 h3 {
   font-size: 24pt;
   font-weight: normal;
   letter-spacing: -1.5px;
   text-align: center;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
 }
 input {
-  width: 250px;
+  width: 500px;
   border: none;
   background: #f1f1f1;
-  height: 30px;
+  height: 50px;
   margin: 5px;
 }
+input[type=text]:focus {
+  outline: 4px solid #2a9d8f;
+}
+input[type=password]:focus {
+  outline: 4px solid #2a9d8f;
+}
+textarea:focus {
+  outline: 4px solid #2a9d8f;
+}
 textarea {
-  width: 494px;
+  width: 500px;
   height: 100px;
   border: none;
-  padding-left: 1px;
+  /* padding-left: 1px; */
   background: #f1f1f1;
+  margin: 5px;
 }
 select {
-  font-size: 10pt;
-  width: 100px;
+  font-size: 12pt;
+  width: 300px;
+  height: 30px;
 }
 h4 {
   font-size: 13pt;
@@ -55,6 +74,7 @@ h4 {
   margin: 0;
 }
 a {
+  /* color: #ebb16e; */
   color: black;
   text-decoration: none;
   font-size: 16pt;
@@ -62,7 +82,12 @@ a {
 }
 a:hover {
   border-top: 2px solid black;
-  color: #ff6666;
+  color: #ebb16e;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 /* CLASS ELEMENTS */
@@ -71,6 +96,12 @@ a:hover {
   color: black;
   border-bottom: 1px solid black;
 }
+.logo {
+  width: 200px;
+  height: 50px;
+  border-radius: none !important;
+  justify-content: left;
+}
 .user-events {
   font-size: 10pt;
 }
@@ -78,36 +109,64 @@ a:hover {
   font-size: 12pt;
   margin: 0;
   letter-spacing: 0;
+  padding: 0;
 }
 .event-name {
   font-size: 18pt;
-  padding-bottom: 0;
-  margin-bottom: 0;
+  padding: 0;
+  margin: 0;
   text-align: left;
+  /* border-top: 4px solid ; */
+  /* padding-top:20px; */
 }
 .event-card {
   display: inline-grid;
-  width: 200px;
-  height: 400px;
+  width: 300px;
+  height: 350px;
   padding-right: 50px;
   text-align: center;
-  border: 1px #e6e6e6 solid;
+  /* border: 1px #e6e6e6 solid; */
+  /* border-collapse: collapse; */
   padding-left: 25px;
+  margin:1px;
+  border-radius: 8px;
 }
-/* .description {
-  overflow: scroll;
-} */
+.category {
+  color: #ebb16e;
+  display: inline;
+}
+.event-card:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 8px;
+}
 .details {
   text-align: left;
   background-color: #F9F9F9;  
   position: absolute;
   z-index: 50;
   transform: translate(100px,50px);
-  width: 300px;
+  width: 400px;
   letter-spacing: 2px;
   padding: 20px;
-  height: 400px;
+  height: 4w0px;
   border: 1px gray solid;
+  /* overflow: scroll; */
+}
+.event-image {
+  border-radius: 60px;
+}
+.create-event-button {
+  width: 80px;
+  height: 80px;
+  background-color: #ebb16e;
+  border-radius: 100%;
+  position: absolute;
+  margin-right: 0;
+  float: right;
+  overflow: auto;
+
+  /* position: fixed; */
+
 }
 .detail-key {
   text-transform: uppercase;
@@ -123,7 +182,17 @@ a:hover {
 .button-resizing {
   padding: 20px;
   margin-right: 20px;
+  margin-top: 50px;
 }
+.button-right {
+  align-items: center;
+}
+.filter {
+  margin: 0 auto;
+}
+/* .user-rsvp {
+  font-size: 10pt;
+} */
 
 /* FORMS */
 .new-event-form {
@@ -137,13 +206,18 @@ a:hover {
   text-align: center;
   padding-top: 50px;
 }
+.reset-button {
+  padding:8px;
+  width: 100px;
+  margin-left: 10px;
+}
 
 /* CALENDAR */
 .calendar {
   width: 700px;
   margin: 0 auto;
-  font-size: 10px;
   clear: both;
+  float: none;
 }
 .fc-event-time{
   display : none;
@@ -152,8 +226,8 @@ a:hover {
   display: none;
 }
 .fc-event-title {
-  font-size: 6pt;
-  overflow: scroll;
+  font-size: 10pt;
+  /* overflow: auto; */
   text-decoration: none;
   color: black;
   background-color: #ebb16e;
@@ -162,9 +236,17 @@ a:hover {
   font-size: .9em;
   white-space: normal !important;
 }
+/* .fc-day-grid-event > .fc-content {
+  white-space: normal;
+  text-overflow: ellipsis;
+  max-height:20px;
+}
+.fc-day-grid-event > .fc-content:hover {
+  max-height:none!important; 
+}
 .fc-view-month .fc-event, .fc-view-agendaWeek .fc-event {
   font-size: 0;
-  overflow: hidden;
+  overflow: auto;
   height: 2px;
 }
 .fc-view-agendaWeek .fc-event-vert {
@@ -178,47 +260,60 @@ a:hover {
 }
 .fc-button-content {
   padding: 0;
-}
+} */
 
 
 /* FLEXBOX but not*/
-.user-card {
-  max-width: 100%
-}
-.profile-info {
-  margin: 0 auto;
-  padding-right: 0;
-  width: 100%;
-  clear: both;
-  display: table;
-  content: "";
-}
-.profile-pic {
-  border-radius: 50px;
-  height: auto;
-  width: 200px;
-  padding-right: 15px;
-  float: left;
-  padding-left: 300px;
-}
-.user-hosting-events {
-  display: flex;
-}
 .edit-form {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   transform: translate(200px,-80px);
   background-color: #ebb16e;
   opacity:1;
-  animation: fadeInOut 3s linear forwards;
   font-size: 16pt;
-  width: 500px;
+  width: 515px;
 }
+.profile-description {
+  color: #ebb16e;
+  font-size: 16pt;
+}
+
+/* PROFILE PAGE */
 .edit-profile-button {
   width: 100px;
 }
-@keyframes fadeInOut {
-  0% { opacity:1; }
-  50% { opacity:1; } 
-  100% { opacity:.90; } 
- }
+.main-div {
+  display: flex;
+  flex-direction: column;
+  margin: 10% auto;
+  overflow: hidden;
+}
+/* .main-div .img-text {
+  position: relative;
+} */
+/* .main-div{
+  flex-direction: row;
+  max-width: 70%;
+} */
+.img-area {
+  flex-basis: 50%;
+  padding: 20px;
+}
+.profile-pic {
+  border-radius: 100%;
+  height: 200px;;
+  width: 200px;
+}
+.row-2-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.profile-description {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.profile-info {
+  
+}

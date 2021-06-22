@@ -2,8 +2,9 @@ import React, {useState} from 'react'
 import {useHistory} from "react-router-dom"
 import {deleteEvent} from "../deleteEvent"
 
-function EventCard({loggedIn, event, handleNewRsvp, userId, onDeleteEvent}) {
-    const {id, name, price, date, time, location, image, description, user_id} = event  
+
+function EventCard({loggedIn, event, handleNewRsvp, userId, onDeleteEvent, handleCategory}) {
+    const {id, name, price, date, time, location, image, description, category} = event  
     const history = useHistory();
     const[showDetails, setShowDetails] = useState()
 
@@ -18,13 +19,10 @@ function EventCard({loggedIn, event, handleNewRsvp, userId, onDeleteEvent}) {
                 event_id: id,
                 user_id: userId,
                 status: "yes",
-                // checkboxes for status 
-                // status: status
             }),         
         })
         .then((r) => r.json())
         .then((userRsvps) => {
-            console.log(userRsvps)
             handleNewRsvp(userRsvps);
             history.push(`/userprofile/${userId}`)
         });
@@ -38,20 +36,20 @@ function EventCard({loggedIn, event, handleNewRsvp, userId, onDeleteEvent}) {
         deleteEvent(event.id).then(()=>onDeleteEvent(event.id))
     }
     return (
-        <div className="event-card">
+        <div className="event-card" onClick={handleShowDetails}>
+            <img src={image} alt={name} className="event-image"/>
             <h3 className="event-name">{name}
             <br/>
+            <p>Category: <p className="category">{category}</p>  </p>
             {loggedIn.id === event.user_id ? 
             <button onClick={handleOnDelete} className="delete">❌  REMOVE</button>
              : null} 
              </h3>
-            <img src={image} alt={name}/>
             <br/>
-            <button onClick={handleShowDetails}>Details</button>
-
 
             {showDetails ? 
             <div className="details">
+                <button className="button-right" onClick={handleShowDetails}>X</button>
               <h4 className="detail-key">{name}</h4>
               <br/>
               <h4 className="detail-key">Price:</h4> <p>${price}</p>
@@ -61,44 +59,16 @@ function EventCard({loggedIn, event, handleNewRsvp, userId, onDeleteEvent}) {
 
               <div className="description">
               <h4 className="detail-key">Description:</h4> <p>{description}</p>
-              <button className="button-resizing" onClick={handleShowDetails}>Close</button>
-              {loggedIn.id !== event.user_id ? 
+
+              {loggedIn && loggedIn.id !== event.user_id ? 
             <button className="button-resizing" onClick={handleRsvp}>RSVP</button>
-             : null} 
-            {/* <p>Host: {user_id}</p> */}
+              : null}
+              <button className="button-resizing">🧡  SAVE</button>
+
               </div>
             </div>
             : null }
-            
 
-            {/* {loggedIn.id === event.user_id ? 
-            <button onClick={handleOnDelete} className="delete">❌  REMOVE</button>
-             : null}  */}
-             {/* <form>
-                 <div>
-                  <input type="radio" id="" name="yes" value="no" checked>
-                  <label>yes</label>
-                 </input>
-                </div>
-
-                <div>
-                <input type="radio" id="" name="no" value="no">
-                  <label>no</label>
-                 </input>
-                </div>
-
-                <div>
-                <input type="radio" id="" name="maybe">
-                  <label>maybe</label>
-                 </input>
-                </div>
-
-             </form>
-             */}
-            {/* {loggedIn.id !== event.user_id ? 
-            <button onClick={handleRsvp}>RSVP</button>
-             : null}  */}
-        
         </div>
     )
 }

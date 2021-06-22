@@ -1,28 +1,53 @@
-import { Dropdown } from 'bootstrap';
+import { CalendarApi } from '@fullcalendar/react';
 import React from 'react'
 import {Link, useHistory} from 'react-router-dom'
 
-function NavBar({loggedIn}) {
+function NavBar({loggedIn, onEventChange}) {
     let history = useHistory();
-    // const [showLogin, setShowLogin]= useState()
 
-    // function handleLoginLink() {
-    //     setShowLogin(!showLogin)
-    // }
     function handleLogOut() {
         localStorage.clear();
         alert("Successfully logged out")
         history.push("/")
         history.go(0)
-        // window.location.reload();
     }
+    // function handleCategory(e) {
+    //     onEventChange(e.target.value)
+    // }
+
+    // function resetFilter() {
+    //     onEventChange("All")
+    // }
+
 
     return (
         <div className="nav-bar">
+            <img src="https://i.ibb.co/QFnhRby/palcal-dark-1.png" className="logo"/>
+            {/* { loggedIn ?
+                <select onChange={handleCategory} className="filter">
+                <option value="All" onClick={resetFilter}>All</option>
+                <option value="Class">Class</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Food">Food</option>
+                <option value="Free">Free</option>
+                <option value="Games">Games</option>
+                <option value="Nightlife">Nightlife</option>
+                <option value="Outdoors">Outdoors</option>
+                <option value="Personal">Personal</option>
+                <option value="Workout">Workout</option>
+                </select>
+                : null }
 
+                {loggedIn ? 
+                <button onClick={resetFilter} className="reset-button">Reset</button>
+                : null}
+                 */}
+
+         { !loggedIn ? 
             <Link className="" to="/signup">
                 Sign Up  
             </Link>
+            : null }
 
             { loggedIn ? 
             <Link to={`/userprofile/${loggedIn.id}`}>
@@ -32,7 +57,9 @@ function NavBar({loggedIn}) {
 
             { loggedIn ? 
             <Link className="" to="/createevent">
-             Create Event
+                <button className="create-event-button">
+             <p>+</p>
+             </button>
             </Link>
             : null }
 
@@ -41,32 +68,31 @@ function NavBar({loggedIn}) {
                     Login
                 </Link>
             : null }
-            
              
 
             <Link className="" to="/allevents">
                 All Events
             </Link>
-
-
-            {/* <select className="filter">
-                <option>Category:</option>
-                <option>Workout</option>
-                <option>Nightlife</option>
-                <option>Free</option>
-                <option>Games</option>
-                <option>Class</option>
-                <option>Outdoors</option>
-                <option>Personal</option>
-                <option>Food</option>
-                <option>Entertainment</option>
-            </select> */}
+            
 
             { loggedIn ?
             <Link onClick={handleLogOut} to="/">
                 Log out
             </Link>
             : null}
+
+            {/* <select onChange={handleCategory}>
+                <option value="All">All</option>
+                <option value="Class">Class</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Food">Food</option>
+                <option value="Free">Free</option>
+                <option value="Games">Games</option>
+                <option value="Nightlife">Nightlife</option>
+                <option value="Outdoors">Outdoors</option>
+                <option value="Personal">Personal</option>
+                <option value="Workout">Workout</option>
+            </select> */}
         </div>
     )
 }

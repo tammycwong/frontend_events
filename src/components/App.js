@@ -11,6 +11,7 @@ function App({}) {
     const[events, setEvents] = useState([])
     const[loggedIn, setLoggedIn] = useState(false)
     const[rsvps, setRsvps] = useState([])
+    const [selectedCategory, setSelectedCategory] = useState("")
 
     useEffect(() => {
         fetch("http://localhost:3000/events", {
@@ -37,6 +38,7 @@ function App({}) {
         }
       }, [])
 
+
       function handleDeleteEvent(id) {
         const newEventsArray = events.filter(event=>event.id !== id)
         setEvents(newEventsArray);
@@ -57,11 +59,27 @@ function App({}) {
         const updatedEventsArray = [...events, newEvent];
         setEvents(updatedEventsArray);
     }
+    function handleEventChange(selectedCategory) {
+        setSelectedCategory(selectedCategory)
+    }
+
+    const filterByWorkout = events.filter((event) => {
+        if (selectedCategory === "All") {
+            return true
+        } else {
+        return (
+            selectedCategory === event.category
+        )
+        }
+    })
 
     return (
         <div>
             <NavBar loggedIn={loggedIn}
-            setLoggedIn={setLoggedIn}/> 
+            setLoggedIn={setLoggedIn} 
+            events={events}
+            onEventChange={handleEventChange}
+            /> 
 
             <Switch>
                 <Route exact path='/'>
@@ -75,10 +93,11 @@ function App({}) {
                 <Route exact path='/allevents'>
                     <AllEvents 
                     loggedIn={loggedIn} 
-                    events={events} 
+                    events={filterByWorkout} 
                     createEvent={handleCreateEvent} 
                     handleNewRsvp={handleNewRsvp} 
                     onDeleteEvent = {handleDeleteEvent}
+                    onEventChange={handleEventChange}
                     />
                 </Route> 
 
