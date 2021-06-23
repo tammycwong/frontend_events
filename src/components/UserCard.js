@@ -69,7 +69,7 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
     })
         const rsvpArray = rsvpEventArray.map((event) => {
           return (
-            <div key={event.id}>
+            <div key={event.id} className="div-with-delete">
               <p>{event.name}</p>
                 <div>
                 <p className="attendee">Attendees: <br/>{event.all_attending_users.map((attendee) => {
@@ -91,15 +91,14 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
                 const eventTime = event.time
                 // console.log(event.user_id)
                 return (
-                      <div key={event.id}>
+                    <div key={event.id} className="div-with-delete">
                         <p> {event.name}</p>
-                       <p className="user-hosting-events">{eventDate} {eventTime}</p>
+                        <p className="user-hosting-events">{eventDate} {eventTime}</p>
                        
-                        {loggedIn.id === event.user_id ? 
+                        {/* {loggedIn.id === event.user_id ?  */}
                         <button onClick={()=>handleOnDelete(event)} className="delete">❌  REMOVE</button>
-                        : null }
-                     
-                      </div>
+                        {/* : null } */}
+                        </div>
                     
                     )
             })

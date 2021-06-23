@@ -61,6 +61,9 @@ img {
   padding-top: 20px;
   /* border-radius: 50px; */
 }
+img:hover {
+  opacity: 0.7;
+}
 button {
   border-radius: 8px;
   font-size: 10pt;
@@ -197,7 +200,7 @@ ul {
   display: inline;
 }
 .event-card:hover {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 #00000033, 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 8px;
 }
 .details {
@@ -246,6 +249,9 @@ ul {
 .delete {
   background-color: white;
   width: 150px;
+  align-items: left;
+  text-align: left;
+  justify-content: left;
 }
 .delete-button-resizing {
   padding: 20px;
@@ -277,9 +283,6 @@ ul {
   padding-top: 10px;
   letter-spacing: 5px;
 }
-/* .user-rsvp {
-  font-size: 10pt;
-} */
 
 /* FORMS */
 .new-event-form {
@@ -364,6 +367,9 @@ p.profile-description {
   color: #ebb16e;
   font-size: 16pt;
 }
+div.div-with-delete {
+  text-align: left;
+}
 
 /* PROFILE PAGE */
 .edit-profile-button {
@@ -397,8 +403,6 @@ p.profile-description {
 .inner.div-2-1 {
   display: flex;
   flex-direction:row;
-
-
 }
 .inner-div-2-2{
   width: 400px;
@@ -414,6 +418,7 @@ p.profile-description {
   display: inline-grid;
   max-height: 200px;
   overflow: auto;
+  text-align: left;
 
 }
 body::-webkit-scrollbar {
