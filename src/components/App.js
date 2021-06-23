@@ -48,6 +48,7 @@ function App({}) {
         setLoggedIn(userInfo.user)
         if(userInfo.user) {
             setRsvps(userInfo.user.rsvps)
+            // console.log(userInfo)
         }
     }
     
@@ -63,7 +64,7 @@ function App({}) {
         setSelectedCategory(selectedCategory)
     }
 
-    const filterByWorkout = events.filter((event) => {
+    const filterByCategory = events.filter((event) => {
         if (selectedCategory === "All") {
             return true
         } else {
@@ -96,7 +97,7 @@ function App({}) {
                 <Route exact path='/allevents'>
                     <AllEvents 
                     loggedIn={loggedIn} 
-                    events={filterByWorkout} 
+                    events={filterByCategory} 
                     createEvent={handleCreateEvent} 
                     handleNewRsvp={handleNewRsvp} 
                     onDeleteEvent = {handleDeleteEvent}

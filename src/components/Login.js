@@ -56,7 +56,7 @@ function Login({onLogin}) {
                 <br/>
 
                 <input type="submit" /> 
-                <p>Not a member? <a href="/signup">Sign up now</a></p>
+                <p className="signup-link">Not a member? <a href="/signup">Sign up now</a></p>
             </form>
         </div>
     )

@@ -13,10 +13,6 @@ function AllEvents({events, createEvent, loggedIn, handleNewRsvp, onDeleteEvent,
         onEventChange("All")
     }
 
-    // function routeToCreateEvent() {
-    //     window.location='/createevent';
-    // }
-
     if(events) {
     const eventCards = events.map((event) => {
         return (
@@ -36,7 +32,6 @@ function AllEvents({events, createEvent, loggedIn, handleNewRsvp, onDeleteEvent,
 
         return (
             <div>
-                {/* { loggedIn ? */}
                 <select onChange={handleCategory} className="filter">
                 <option value="All" onClick={resetFilter}>All</option>
                 <option value="Class">Class</option>
@@ -49,11 +44,8 @@ function AllEvents({events, createEvent, loggedIn, handleNewRsvp, onDeleteEvent,
                 <option value="Personal">Personal</option>
                 <option value="Workout">Workout</option>
                 </select>
-                {/* : null }
 
-                { loggedIn ? */}
                 <button onClick={resetFilter} className="reset-button">Reset</button>
-                {/* : null} */}
                 <br/>
 
                 {eventCards}

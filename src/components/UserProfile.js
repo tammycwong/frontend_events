@@ -20,7 +20,6 @@ function UserProfile({rsvps, onDeleteEvent, loggedIn, events, routeToCreateEvent
         .then((userData) => {
             setUserEvents(userData.user.events)
             setUserData(userData.user)
-            console.log(userData)
             setIsLoaded(true)
         });
     },[params.id]);

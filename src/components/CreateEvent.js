@@ -61,7 +61,7 @@ function CreateEvent({createEvent, loggedIn}) {
                 <input
                     type="number"
                     name="price"
-                    step="0.01"
+                    step="1"
                     placeholder="Price"
                     value={price}
                     autocomplete="off"

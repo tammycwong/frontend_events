@@ -49,9 +49,9 @@ function EventCard({loggedIn, event, handleNewRsvp, userId, onDeleteEvent, handl
 
             {showDetails ? 
             <div className="details">
-                <button className="button-right" onClick={handleShowDetails}>X</button>
+                <button className="button-right" onClick={handleShowDetails}>X CLOSE</button>
               <h4 className="detail-key">{name}</h4>
-              <img src={image}/>
+              <img src={image} className="card-image"/>
               <h4 className="detail-key">Price:</h4> <p>${price}</p>
               <h4 className="detail-key">Date:</h4> <p>{date}</p>
               <h4 className="detail-key">Time:</h4> <p>{time}</p>
@@ -59,17 +59,20 @@ function EventCard({loggedIn, event, handleNewRsvp, userId, onDeleteEvent, handl
 
               <div className="description">
               <h4 className="detail-key">Description:</h4> <p>{description}</p>
+              </div>
 
               {loggedIn && loggedIn.id !== event.user_id ? 
-            <button className="button-resizing" onClick={handleRsvp}>RSVP</button>
-             :<button onClick={()=>handleOnDelete(event)} className="delete-button-resizing">❌  REMOVE</button>}
-              <button className="button-resizing">🧡  SAVE</button>
+                <button className="button-details" onClick={handleRsvp}>RSVP</button>
+             :null}
 
-              </div>
+              {loggedIn && loggedIn.id == event.user_id ?
+                <button onClick={()=>handleOnDelete(event)} className="delete-button-resizing">❌  REMOVE</button>
+              :null }
+              
             </div>
             : null }
 
         </div>
     )
-}
+              }
 export default EventCard
