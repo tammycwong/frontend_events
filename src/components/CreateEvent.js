@@ -144,7 +144,7 @@ function CreateEvent({createEvent, loggedIn}) {
                 </select>
 
                 <br/>
-                <button type="submit"> Create</button>
+                <button type="submit" className="button-resizing"> Create</button>
               </form>
         </div>
 

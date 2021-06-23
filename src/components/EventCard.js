@@ -26,7 +26,7 @@ function EventCard({loggedIn, event, handleNewRsvp, userId, onDeleteEvent, handl
             handleNewRsvp(userRsvps);
             history.push(`/userprofile/${userId}`)
         });
-    }    
+    }      
 
     function handleShowDetails() {
         setShowDetails(!showDetails)

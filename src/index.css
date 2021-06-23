@@ -49,6 +49,7 @@ body {
   margin: 0 auto;
   padding-top: 30px;
   padding-bottom: 40px;
+  text-align: center;
 }
 img {
   width: 320px;
@@ -65,6 +66,7 @@ button {
   font-size: 10pt;
   border: none;
   margin-bottom: 8px;
+  text-align: center;
 }
 button:hover {
   color: #ebb16e;
@@ -73,8 +75,10 @@ p {
   font-size: 14pt;
   /* margin: 0; */
   letter-spacing: 0;
+  text-align: left;
 }
 h3 {
+  text-align: left;
   font-size: 24pt;
   font-weight: normal;
   letter-spacing: -1.5px;
@@ -82,6 +86,7 @@ h3 {
   padding: 0;
   margin: 0;
   display: inline-block;
+
 }
 input {
   width: 500px;
@@ -120,6 +125,7 @@ h4 {
   font-size: 13pt;
   padding: auto;
   margin: 0;
+  text-align: left;
 }
 a {
   /* color: #ebb16e; */
@@ -136,6 +142,7 @@ ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
+  text-align: center;
 }
 /* CLASS ELEMENTS */
 .nav-bar {
@@ -353,7 +360,7 @@ ul {
   font-size: 16pt;
   width: 515px;
 }
-.profile-description {
+p.profile-description {
   color: #ebb16e;
   font-size: 16pt;
 }
@@ -385,21 +392,40 @@ ul {
 .inner.div-1-2 {
   display: flex;
   flex-direction: column;
+
 }
 .inner.div-2-1 {
   display: flex;
-  flex-direction: row;
-  /* justify-content: center;  */
+  flex-direction:row;
+
 
 }
 .inner-div-2-2{
   width: 400px;
   display: inline-grid;
-  padding-left: 100px;
+  /* padding-left: 200px; */
+  max-height: 200px;
+  overflow: auto;
+
 }
 .inner-div-2-3 {
   width: 400px;
   /* float: right; */
   display: inline-grid;
+  max-height: 200px;
+  overflow: auto;
 
+}
+body::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: orange;        /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: white;    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 3px solid orange;  /* creates padding around scroll thumb */
 }

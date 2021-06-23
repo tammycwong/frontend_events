@@ -74,7 +74,7 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
                 <div>
                 <p className="attendee">Attendees: <br/>{event.all_attending_users.map((attendee) => {
                     return <Link key={v4()} to={`/userprofile/${attendee.id}`}>
-                        <li className="attendee">✔️{attendee.name}</li></Link>    
+                        <p className="attendee">✔️{attendee.name}</p></Link>    
             })
                 }
                 </p>
