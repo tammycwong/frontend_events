@@ -39,9 +39,9 @@ function SignUp({onLogin}) {
     }
 
     return (
-        <div>
-        <h2>Sign Up:</h2>
-            <form onSubmit={(e) => signUp(e)} className="user-info">
+        <div className="new-event-form">
+          <h3>Sign Up:</h3>
+            <form onSubmit={(e) => signUp(e)}>
                 <label>Username: </label>
                 <input 
                 name="username" 
@@ -72,6 +72,7 @@ function SignUp({onLogin}) {
                 name="location" 
                 type="text" 
                 value={location}
+                autocomplete="off"
                 onChange={(e) => setLocation(e.target.value)}
                 />
                 <br />

@@ -39,7 +39,7 @@ function App({}) {
       }, [])
 
 
-      function handleDeleteEvent(id) {
+    function handleDeleteEvent(id) {
         const newEventsArray = events.filter(event=>event.id !== id)
         setEvents(newEventsArray);
     }

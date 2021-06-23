@@ -41,6 +41,7 @@ function Login({onLogin}) {
                 name="username" 
                 type="text" 
                 value={username}
+                autocomplete="off"
                 onChange={(e) => setUsername(e.target.value)}
                 />
                 <br/>
@@ -49,6 +50,7 @@ function Login({onLogin}) {
                 name="password" 
                 type="password" 
                 value={password}
+                autocomplete="off"
                 onChange={(e) => setPassword(e.target.value)}
                 />
                 <br/>

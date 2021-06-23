@@ -19,7 +19,6 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
 
     const [showEditForm, setShowEditForm] = useState(false)
     const [showRsvp, setShowRsvp] = useState (false)
-
     // function handleShowRsvp() {
     //     setShowRsvp(!showRsvp)
     // }
@@ -68,37 +67,34 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
             title: event.name
         }
     })
-
-
-    const rsvpArray = rsvpEventArray.map((event) => {
-        return (
-        <div key={event.id} className="">
-            {event.name}
-            <div className="">
-                <p>Attendees: 
-                {event.all_attending_users.map((attendee) => {
-                    return <Link key={v4()} className="" to={`/userprofile/${attendee.id}`}><li>{attendee.name}</li></Link>
-                })
+        const rsvpArray = rsvpEventArray.map((event) => {
+          return (
+            <div key={event.id}>
+              <p>{event.name}</p>
+                <div>
+                <p className="attendee">Attendees: <br/>{event.all_attending_users.map((attendee) => {
+                    return <Link key={v4()} to={`/userprofile/${attendee.id}`}>
+                        <li className="attendee">✔️{attendee.name}</li></Link>    
+            })
                 }
-            </p>
+                </p>
             </div>
-            </div>
+        </div>
         )
     })
+
 
 
         if(userData.events) {
             userEventCards = userEvents.map((event) => {
                 const eventDate = event.date
                 const eventTime = event.time
-                console.log(event.user_id)
+                // console.log(event.user_id)
                 return (
                       <div key={event.id}>
-                        <p className="user-events"> {event.name}</p>
-                        {/* <button>Delete</button> */}
-                       {eventDate}
-                       {eventTime}
-
+                        <p> {event.name}</p>
+                       <p className="user-hosting-events">{eventDate} {eventTime}</p>
+                       
                         {loggedIn.id === event.user_id ? 
                         <button onClick={()=>handleOnDelete(event)} className="delete">❌  REMOVE</button>
                         : null }
@@ -110,6 +106,9 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
             
         }
     return(
+
+
+
         <div className="user-card">
             {/* outer container */}
             <div className="outer-container">
@@ -119,7 +118,9 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
                   <img src={image} alt={name} className="profile-pic"/>
 
                     <div className="inner-div-1-2">
+                    {loggedIn.id === userData.id ?
                     <h3>@{username} <button className="button-resizing" onClick={handleShowHide}>Edit Profile</button> </h3> 
+                   : null }
                     <p className="profile-description">{name}</p>
                     <p>{location}</p>
                     <p>Interests: {interests}</p>
@@ -190,15 +191,15 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
             {/* row */}
             <div className="inner-div-2-1">
                 <div className="inner-div-2-2">
-                  <h4 className="">Hosting:</h4>
+                  <h4 className="profile-events-type">Hosting:</h4>
                     <ul className="user-events">
                        {userEventCards}
                     </ul>
                 </div>
 
                     <div className="inner-div-2-3">
-                       <h4 className="">RSVPS:</h4>
-                          <ul className="user-rsvp">
+                       <h4 className="profile-events-type">RSVPS:</h4>
+                          <ul className="user-events">
                             {rsvpArray}
                           </ul>
                     </div>

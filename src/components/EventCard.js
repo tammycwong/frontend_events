@@ -51,7 +51,7 @@ function EventCard({loggedIn, event, handleNewRsvp, userId, onDeleteEvent, handl
             <div className="details">
                 <button className="button-right" onClick={handleShowDetails}>X</button>
               <h4 className="detail-key">{name}</h4>
-              <br/>
+              <img src={image}/>
               <h4 className="detail-key">Price:</h4> <p>${price}</p>
               <h4 className="detail-key">Date:</h4> <p>{date}</p>
               <h4 className="detail-key">Time:</h4> <p>{time}</p>
@@ -62,7 +62,7 @@ function EventCard({loggedIn, event, handleNewRsvp, userId, onDeleteEvent, handl
 
               {loggedIn && loggedIn.id !== event.user_id ? 
             <button className="button-resizing" onClick={handleRsvp}>RSVP</button>
-              : null}
+             :<button onClick={()=>handleOnDelete(event)} className="delete-button-resizing">❌  REMOVE</button>}
               <button className="button-resizing">🧡  SAVE</button>
 
               </div>

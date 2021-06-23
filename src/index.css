@@ -45,8 +45,8 @@ table {
 /* HTML ELEMENTS */
 body {
   font-family: Helvetica;
-  max-width: 75%;
-  margin: auto;
+  max-width: 80%;
+  margin: 0 auto;
   padding-top: 30px;
   padding-bottom: 40px;
 }
@@ -71,7 +71,7 @@ button:hover {
 }
 p {
   font-size: 14pt;
-  margin: 0;
+  /* margin: 0; */
   letter-spacing: 0;
 }
 h3 {
@@ -91,13 +91,13 @@ input {
   margin: 5px;
 }
 input[type=text]:focus {
-  outline: 4px solid #2a9d8f;
+  outline: 4px solid #ebb16e;
 }
 input[type=password]:focus {
-  outline: 4px solid #2a9d8f;
+  outline: 4px solid #ebb16e;
 }
 textarea:focus {
-  outline: 4px solid #2a9d8f;
+  outline: 4px solid #ebb16e;
 }
 textarea {
   width: 500px;
@@ -111,6 +111,10 @@ select {
   font-size: 12pt;
   width: 300px;
   height: 30px;
+}
+select:focus {
+  outline: 4px solid #ebb16e;
+  border: none;
 }
 h4 {
   font-size: 13pt;
@@ -133,7 +137,6 @@ ul {
   padding: 0;
   margin: 0;
 }
-
 /* CLASS ELEMENTS */
 .nav-bar {
   text-align: right;
@@ -151,21 +154,20 @@ ul {
   padding-top: 0;
 }
 .user-events {
-  font-size: 10pt;
-}
-.rsvp-attendees {
   font-size: 12pt;
-  margin: 0;
-  letter-spacing: 0;
-  padding: 0;
+  color: #ebb16e;
+}
+.user-hosting-events {
+  font-size: 10pt;
+  color: black;
+  padding-left: 10px;
+
 }
 .event-name {
   font-size: 18pt;
   padding: 0;
   margin: 0;
   text-align: left;
-  /* border-top: 4px solid ; */
-  /* padding-top:20px; */
 }
 .event-card {
   display: inline-grid;
@@ -178,6 +180,10 @@ ul {
   padding-left: 25px;
   margin:1px;
   border-radius: 8px;
+  transition: transform .3s;
+}
+.event-card:hover {
+  transform: scale(1.1);
 }
 .category {
   color: #ebb16e;
@@ -234,6 +240,14 @@ ul {
   background-color: white;
   width: 150px;
 }
+.delete-button-resizing {
+  padding: 20px;
+  margin-right: 20px;
+  margin-top: 50px;
+}
+.delete-button-resizing:hover {
+  background-color: #ff6666;
+}
 .button-resizing {
   padding: 20px;
   margin-right: 20px;
@@ -244,7 +258,17 @@ ul {
 }
 .filter {
   margin: 0 auto;
-  
+}
+.attendee {
+  font-size: 12pt;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+}
+.profile-events-type {
+  font-size: 14pt;
+  padding-top: 10px;
+  letter-spacing: 5px;
 }
 /* .user-rsvp {
   font-size: 10pt;
@@ -323,7 +347,7 @@ ul {
 .edit-form {
   position: absolute;
   z-index: 2;
-  transform: translate(200px,-80px);
+  transform: translate(200px,-10px);
   background-color: #ebb16e;
   opacity:1;
   font-size: 16pt;
@@ -344,7 +368,7 @@ ul {
 }
 
 .profile-pic {
-  border-radius: 70%;
+  border-radius: 100%;
   height: 200px;
   width: auto;
   padding-right: 30px;
@@ -365,18 +389,17 @@ ul {
 .inner.div-2-1 {
   display: flex;
   flex-direction: row;
+  /* justify-content: center;  */
 
 }
 .inner-div-2-2{
-  width: 250px;;
-  margin: 0px auto; 
-  padding: 0px auto;
-  display: inline-block;
-
+  width: 400px;
+  display: inline-grid;
+  padding-left: 100px;
 }
 .inner-div-2-3 {
-  width: 250px;
+  width: 400px;
   /* float: right; */
-  display: inline-block;
+  display: inline-grid;
 
 }

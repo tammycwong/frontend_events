@@ -11,18 +11,16 @@ function NavBar({loggedIn, onEventChange}) {
         history.push("/")
         history.go(0)
     }
-    // function handleCategory(e) {
-    //     onEventChange(e.target.value)
-    // }
-
-    // function resetFilter() {
-    //     onEventChange("All")
-    // }
+    function logoOnClick() {
+        window.location='/allevents'
+    }
 
 
     return (
         <div className="nav-bar">
-            <img src="https://i.ibb.co/QFnhRby/palcal-dark-1.png" className="logo"/>
+
+            <img src="https://i.ibb.co/QFnhRby/palcal-dark-1.png" className="logo" onClick={logoOnClick}/>
+
             {/* { loggedIn ?
                 <select onChange={handleCategory} className="filter">
                 <option value="All" onClick={resetFilter}>All</option>

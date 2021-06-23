@@ -2,7 +2,7 @@ import React from 'react'
 import EventCard from './EventCard'
 
 
-function AllEvents({events, createEvent, loggedIn, handleNewRsvp, onDeleteEvent, onEventChange, resetFilter}) {
+function AllEvents({events, createEvent, loggedIn, handleNewRsvp, onDeleteEvent, onEventChange, resetFilter, routeToCreateEvent}) {
     const {id} = loggedIn
 
     function handleCategory(e) {
@@ -13,9 +13,9 @@ function AllEvents({events, createEvent, loggedIn, handleNewRsvp, onDeleteEvent,
         onEventChange("All")
     }
 
-    function routeToCreateEvent() {
-        window.location='/createevent';
-    }
+    // function routeToCreateEvent() {
+    //     window.location='/createevent';
+    // }
 
     if(events) {
     const eventCards = events.map((event) => {
@@ -29,13 +29,14 @@ function AllEvents({events, createEvent, loggedIn, handleNewRsvp, onDeleteEvent,
             loggedIn={loggedIn}
             onDeleteEvent={onDeleteEvent}
             onEventChange={onEventChange}
+            routeToCreateEvent={routeToCreateEvent}
             />
         )
     })
 
         return (
             <div>
-                { loggedIn ?
+                {/* { loggedIn ? */}
                 <select onChange={handleCategory} className="filter">
                 <option value="All" onClick={resetFilter}>All</option>
                 <option value="Class">Class</option>
@@ -48,15 +49,18 @@ function AllEvents({events, createEvent, loggedIn, handleNewRsvp, onDeleteEvent,
                 <option value="Personal">Personal</option>
                 <option value="Workout">Workout</option>
                 </select>
-                : null }
+                {/* : null }
 
-                { loggedIn ?
+                { loggedIn ? */}
                 <button onClick={resetFilter} className="reset-button">Reset</button>
-                : null}
+                {/* : null} */}
                 <br/>
 
                 {eventCards}
+
+                {loggedIn ? 
                 <button className="create-event-button" onClick={routeToCreateEvent}><p className="plus">+</p></button>
+                : null}
             </div>
         )
     } else {

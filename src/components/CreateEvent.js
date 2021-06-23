@@ -119,6 +119,7 @@ function CreateEvent({createEvent, loggedIn}) {
                     name="description"
                     placeholder="Description"
                     value={description}
+                    autocomplete="off"
                     onChange={(e) => setDescription(e.target.value)}
                 />
                 <br/>
