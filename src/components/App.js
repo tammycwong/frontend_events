@@ -11,7 +11,7 @@ function App({}) {
     const[events, setEvents] = useState([])
     const[loggedIn, setLoggedIn] = useState(false)
     const[rsvps, setRsvps] = useState([])
-    const [selectedCategory, setSelectedCategory] = useState("")
+    const [selectedCategory, setSelectedCategory] = useState("All")
 
     useEffect(() => {
         fetch("http://localhost:3000/events", {
@@ -72,6 +72,9 @@ function App({}) {
         )
         }
     })
+    function routeToCreateEvent() {
+        window.location='/createevent';
+    }
 
     return (
         <div>
@@ -98,6 +101,7 @@ function App({}) {
                     handleNewRsvp={handleNewRsvp} 
                     onDeleteEvent = {handleDeleteEvent}
                     onEventChange={handleEventChange}
+                    routeToCreateEvent={routeToCreateEvent}
                     />
                 </Route> 
 
@@ -107,6 +111,7 @@ function App({}) {
                     rsvps={rsvps} 
                     events={events}
                     onDeleteEvent = {handleDeleteEvent}
+                    routeToCreateEvent={routeToCreateEvent}
                     />
                 </Route>
 

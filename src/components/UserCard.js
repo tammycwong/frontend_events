@@ -5,7 +5,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import v4 from 'uuid/v4'
 import {deleteEvent} from "../deleteEvent"
 
-function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setUserEvents, loggedIn}) {
+function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setUserEvents, loggedIn, routeToCreateEvent}) {
     let userEventCards = []
     let history = useHistory()
 
@@ -93,7 +93,6 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
                 const eventTime = event.time
                 console.log(event.user_id)
                 return (
-                    <div className="float-child">
                       <div key={event.id}>
                         <p className="user-events"> {event.name}</p>
                         {/* <button>Delete</button> */}
@@ -105,28 +104,30 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
                         : null }
                      
                       </div>
-                    </div>
                     
                     )
             })
             
         }
     return(
-        <main className="user-card">
-            <div className="">
-              <h3>@{username} <button className="button-resizing" onClick={handleShowHide}>Edit Profile</button> </h3> 
-              <div className="profile-pic-div">
-              <img src={image} alt={name} className="profile-pic"/>
-              </div>
+        <div className="user-card">
+            {/* outer container */}
+            <div className="outer-container">
+                {/* inner container 1 */}
+                <div className="inner-div-1-1">
 
-                <div className="profile-description-div">
-                  <p className="profile-description">{name}</p>
-                  <p>{location}</p>
-                  <p>Interests: {interests}</p>
-                </div>
+                  <img src={image} alt={name} className="profile-pic"/>
+
+                    <div className="inner-div-1-2">
+                    <h3>@{username} <button className="button-resizing" onClick={handleShowHide}>Edit Profile</button> </h3> 
+                    <p className="profile-description">{name}</p>
+                    <p>{location}</p>
+                    <p>Interests: {interests}</p>
+                    </div> 
 
                 <br/>
 
+            {/* edit form */}
             {showEditForm ? 
             <form onSubmit={handleEdit} className="edit-form">
                 <button onClick={!showEditForm} align="right">X</button><br/>
@@ -183,34 +184,39 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
                 <input type="submit" />
             </form>
                 : null }
+                {/* end of form */}
             </div>
 
-
-                <div className="user-hosting-events">
+            {/* row */}
+            <div className="inner-div-2-1">
+                <div className="inner-div-2-2">
                   <h4 className="">Hosting:</h4>
                     <ul className="user-events">
                        {userEventCards}
                     </ul>
                 </div>
 
-
-
-                    <div className="user-hosting-events">
+                    <div className="inner-div-2-3">
                        <h4 className="">RSVPS:</h4>
                           <ul className="user-rsvp">
                             {rsvpArray}
-                           </ul>
+                          </ul>
                     </div>
-
-                
-                <div className="calendar">
+            </div>
+            
+                {/*row  */}
+                <div className="inner-div-3-1">
+                  <div className="calendar">
                   <FullCalendar
                     initialView="dayGridMonth"
                     plugins={[dayGridPlugin]}
                     events={[...rsvpEventArray, ...userEventArray]}
                   />
                 </div>
-        </main>
+                </div>
+            </div>
+            <button className="create-event-button" onClick={routeToCreateEvent}><p className="plus">+</p></button>
+        </div>
     )
 }
 export default UserCard

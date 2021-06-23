@@ -43,7 +43,9 @@ function CreateEvent({createEvent, loggedIn}) {
 
     return (
         <div className="new-event-form">
-            <h1>Create Event</h1>
+            <h3>Create Event:</h3>
+            <br/>
+            <br/>
               <form className="new-event-form" onSubmit={handleSubmit}>
                   <label>Title: </label>
                 <input
@@ -51,6 +53,7 @@ function CreateEvent({createEvent, loggedIn}) {
                     name="name"
                     placeholder="Event title"
                     value={name}
+                    autocomplete="off"
                     onChange={(e) => setName(e.target.value)}
                 />
                 <br/>
@@ -61,6 +64,7 @@ function CreateEvent({createEvent, loggedIn}) {
                     step="0.01"
                     placeholder="Price"
                     value={price}
+                    autocomplete="off"
                     onChange={(e) => setPrice(e.target.value)}
                 />
                 <br/>
@@ -70,6 +74,7 @@ function CreateEvent({createEvent, loggedIn}) {
                     name="date"
                     placeholder="Date"
                     value={date}
+                    autocomplete="off"
                     onChange={(e) => setDate(e.target.value)}
                 />
                 <br/>
@@ -80,6 +85,7 @@ function CreateEvent({createEvent, loggedIn}) {
                     name="time"
                     placeholder="Time"
                     value={time}
+                    autocomplete="off"
                     onChange={(e) => setTime(e.target.value)}
                 />
                 <br/>
@@ -90,6 +96,7 @@ function CreateEvent({createEvent, loggedIn}) {
                     name="location"
                     placeholder="Location"
                     value={location}
+                    autocomplete="off"
                     onChange={(e) => setLocation(e.target.value)}
                 />
                 <br/>
@@ -100,6 +107,7 @@ function CreateEvent({createEvent, loggedIn}) {
                     name="image"
                     placeholder="Event Image"
                     value={image}
+                    autocomplete="off"
                     onChange={(e) => setImage(e.target.value)}
                 />
                 <br/>
@@ -135,9 +143,7 @@ function CreateEvent({createEvent, loggedIn}) {
                 </select>
 
                 <br/>
-                {loggedIn ? (
-                <button type="submit"> 📅  Create</button>
-                 ) : alert("please login or sign up") }
+                <button type="submit"> Create</button>
               </form>
         </div>
 

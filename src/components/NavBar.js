@@ -55,13 +55,13 @@ function NavBar({loggedIn, onEventChange}) {
             </Link> 
              : null }
 
-            { loggedIn ? 
+            {/* { loggedIn ? 
             <Link className="" to="/createevent">
                 <button className="create-event-button">
              <p>+</p>
              </button>
             </Link>
-            : null }
+            : null } */}
 
             { !loggedIn ? 
                 <Link className="" to="/">
