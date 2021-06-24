@@ -2,7 +2,7 @@ import { CalendarApi } from '@fullcalendar/react';
 import React from 'react'
 import {Link, useHistory} from 'react-router-dom'
 
-function NavBar({loggedIn, onEventChange}) {
+function NavBar({loggedIn}) {
     let history = useHistory();
 
     function handleLogOut() {

@@ -19,11 +19,11 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
     const [updatedLocation, updatedSetLocation] = useState(location);
 
     const [showEditForm, setShowEditForm] = useState(false)
-    const [showRsvp, setShowRsvp] = useState (false)
+    // const [showRsvp, setShowRsvp] = useState (false)
     // function handleShowRsvp() {
     //     setShowRsvp(!showRsvp)
     // }
-
+    console.log(userData, userEvents)
     function handleShowHide() {
         setShowEditForm(!showEditForm)
     }
@@ -69,29 +69,31 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
             title: event.name
         }
     })
-        const rsvpArray = userEventArray.map((event) => {
-          return (
-            <div key={event.id} className="div-with-delete">
-              <p>{event.name}</p>
-                <div>
-                <p className="attendee">Attendees: <br/>{event.all_attending_users.map((attendee) => {
-                    return <Link key={v4()} to={`/userprofile/${attendee.id}`}>
-                        <p className="attendee">✔️{attendee.name}</p></Link>    
-            })
-                }
-                </p>
-            </div>
-        </div>
-        )
-    })
+    //     const rsvpArray = rsvpEventArray.map((event) => {
+    //     // userEventArray.map((event) => {
+    //       return (
+    //         <div key={event.id} className="div-with-delete">
+    //           <p>{event.name}</p>
+    //             <div>
+    //             <p className="attendee">Attendees: <br/>{event.all_attending_users.map((attendee) => {
+    //                 return <Link key={v4()} to={`/userprofile/${attendee.id}`}>
+    //                     <p className="attendee">✔️{attendee.name}</p></Link>    
+    //         })
+    //             }
+    //             </p>
+    //         </div>
+    //     </div>
+    //     )
+    // })
     const rsvpsOnlyArray = userData.rsvps.map((rsvp) => {
         return (
             <div className="div-with-delete">
                 <p>{rsvp.event.name}</p>
+                <p className="user-hosting-events">{rsvp.event.date} {rsvp.event.time}</p>
             <div>
                 <p className="attendee">{rsvp.event.all_attending_users.map((attendee) => {
                     return <Link key={rsvp.id} to={`/userprofile/${attendee.id}`}>
-                    <p className="attendee">{attendee.name}</p></Link>
+                    <p className="attendee">✔️{attendee.name}</p></Link>
                 })
             }
             </p>
@@ -112,13 +114,15 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
                         <p> {event.name}</p>
                         <p className="user-hosting-events">{eventDate} {eventTime}</p>
                        
-                        <button onClick={()=>handleOnDelete(event)} className="delete">❌  REMOVE</button>
+                        <button onClick={()=>handleOnDelete(event)} className="delete" alert={("are you sure?")}> ❌  REMOVE</button>
                     </div>
                     
                     )
             })
             
         }
+        console.log([...rsvpEventArray, ...userEventArray])
+        console.log(rsvps, userEvents)
     return(
 
 
@@ -128,12 +132,13 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
             <div className="outer-container">
                 {/* inner container 1 */}
                 <div className="inner-div-1-1">
-
-                  <img src={image} alt={name} className="profile-pic"/>
+                    <img src={image} alt={name} className="profile-pic"/>
 
                     <div className="inner-div-1-2">
+                    {/* {loggedIn.id === userData.id ? */}
+                    <h3 className="username">@{username}</h3>
                     {loggedIn.id === userData.id ?
-                    <h3 className="username">@{username} <button className="edit-profile-button" onClick={handleShowHide}>Edit Profile</button> </h3> 
+                     <button className="edit-profile-button" onClick={handleShowHide}>Edit Profile</button>
                    : null }
                     <p className="profile-description">{name}</p>
                     <p>{location}</p>
@@ -214,6 +219,7 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
                     <div className="inner-div-2-3">
                        <h4 className="profile-events-type">RSVPS:</h4>
                           <ul className="user-events">
+                              {/* {rsvpArray} */}
                             {rsvpsOnlyArray}
                           </ul>
                     </div>

@@ -292,6 +292,7 @@ ul {
 }
 .edit-profile-button {
   padding: 8px;
+  margin-left: 10px;
 }
 .filter {
   margin: 0 auto;
@@ -340,7 +341,7 @@ h3.username {
 
 /* CALENDAR */
 .calendar {
-  width: 550px;
+  width: 600px;
   margin: 0 auto;
   clear: both;
   float: none;
@@ -418,7 +419,7 @@ div.div-with-delete {
 }
 
 .profile-pic {
-  border-radius: 100%;
+  border-radius: 50%;
   height: 200px;
   width: auto;
   padding-right: 30px;

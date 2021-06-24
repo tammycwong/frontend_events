@@ -64,6 +64,11 @@ function App({}) {
         setSelectedCategory(selectedCategory)
     }
 
+    // function rsvp9(data) {  
+    //     setRsvps(data)
+    //     console.log(data)
+    // }
+
     const filterByCategory = events.filter((event) => {
         if (selectedCategory === "All") {
             return true
@@ -113,6 +118,7 @@ function App({}) {
                     events={events}
                     onDeleteEvent = {handleDeleteEvent}
                     routeToCreateEvent={routeToCreateEvent}
+                    // rsvp9={rsvp9}
                     />
                 </Route>
 

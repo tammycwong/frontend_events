@@ -2,12 +2,12 @@ import React, {useState, useEffect} from 'react'
 import { useParams} from 'react-router-dom';
 import UserCard from './UserCard'
 
-function UserProfile({rsvps, onDeleteEvent, loggedIn, events, routeToCreateEvent}) {
+function UserProfile({rsvps, onDeleteEvent, loggedIn, events, routeToCreateEvent, rsvp9}) {
     const [userData, setUserData] = useState({})
     const [isLoaded, setIsLoaded] = useState()
     const params = useParams()
     const [userEvents, setUserEvents] = useState([])
-    const [] = useState()
+    // const [rsvpArray, setRsvpArray] = useState(rsvps)
 
     // GET request
     useEffect(() => {
@@ -20,7 +20,10 @@ function UserProfile({rsvps, onDeleteEvent, loggedIn, events, routeToCreateEvent
         .then((userData) => {
             setUserEvents(userData.user.events)
             setUserData(userData.user)
+            // setRsvpArray(userData.user.rsvps)
             setIsLoaded(true)
+            // rsvp9(userData.user.rsvps)
+
         });
     },[params.id]);
 
@@ -29,10 +32,10 @@ function UserProfile({rsvps, onDeleteEvent, loggedIn, events, routeToCreateEvent
             <div>
                 <UserCard 
                 userData={userData} 
-                rsvps={rsvps} 
+                // rsvps={rsvpArray} 
+                rsvps={rsvps}
                 onDeleteEvent={onDeleteEvent}
                 loggedIn={loggedIn}
-                events={events}
                 setUserData={setUserData}
                 userEvents = {userEvents}
                 setUserEvents = {setUserEvents}
