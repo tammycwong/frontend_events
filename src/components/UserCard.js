@@ -91,7 +91,7 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
             <div>
                 <p className="attendee">{rsvp.event.all_attending_users.map((attendee) => {
                     return <Link key={rsvp.id} to={`/userprofile/${attendee.id}`}>
-                    <p className="attendee">{attendee.username}</p></Link>
+                    <p className="attendee">{attendee.name}</p></Link>
                 })
             }
             </p>

@@ -312,6 +312,7 @@ ul {
 }
 h3.username {
   text-align: left;
+  padding-top: 50px;
 }
 .card-image {
   width: 250px;
@@ -401,7 +402,7 @@ h3.username {
 p.profile-description {
   color: #ebb16e;
   font-size: 16pt;
-  padding-top: 60px;
+  /* padding-top: 60px; */
 }
 div.div-with-delete {
   text-align: left;
