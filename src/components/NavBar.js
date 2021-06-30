@@ -1,4 +1,3 @@
-import { CalendarApi } from '@fullcalendar/react';
 import React from 'react'
 import {Link, useHistory} from 'react-router-dom'
 
@@ -18,28 +17,7 @@ function NavBar({loggedIn}) {
 
     return (
         <div className="nav-bar">
-
-            <img src="https://i.ibb.co/QFnhRby/palcal-dark-1.png" className="logo" onClick={logoOnClick}/>
-
-            {/* { loggedIn ?
-                <select onChange={handleCategory} className="filter">
-                <option value="All" onClick={resetFilter}>All</option>
-                <option value="Class">Class</option>
-                <option value="Entertainment">Entertainment</option>
-                <option value="Food">Food</option>
-                <option value="Free">Free</option>
-                <option value="Games">Games</option>
-                <option value="Nightlife">Nightlife</option>
-                <option value="Outdoors">Outdoors</option>
-                <option value="Personal">Personal</option>
-                <option value="Workout">Workout</option>
-                </select>
-                : null }
-
-                {loggedIn ? 
-                <button onClick={resetFilter} className="reset-button">Reset</button>
-                : null}
-                 */}
+            <img src="https://i.ibb.co/QFnhRby/palcal-dark-1.png" className="logo" onClick={logoOnClick} alt="logo"/>
 
          { !loggedIn ? 
             <Link className="" to="/signup">
@@ -53,18 +31,10 @@ function NavBar({loggedIn}) {
             </Link> 
              : null }
 
-            {/* { loggedIn ? 
-            <Link className="" to="/createevent">
-                <button className="create-event-button">
-             <p>+</p>
-             </button>
-            </Link>
-            : null } */}
-
             { !loggedIn ? 
-                <Link className="" to="/">
-                    Login
-                </Link>
+            <Link className="" to="/">
+                Login
+            </Link>
             : null }
              
 
@@ -78,19 +48,6 @@ function NavBar({loggedIn}) {
                 Log out
             </Link>
             : null}
-
-            {/* <select onChange={handleCategory}>
-                <option value="All">All</option>
-                <option value="Class">Class</option>
-                <option value="Entertainment">Entertainment</option>
-                <option value="Food">Food</option>
-                <option value="Free">Free</option>
-                <option value="Games">Games</option>
-                <option value="Nightlife">Nightlife</option>
-                <option value="Outdoors">Outdoors</option>
-                <option value="Personal">Personal</option>
-                <option value="Workout">Workout</option>
-            </select> */}
         </div>
     )
 }

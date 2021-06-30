@@ -7,7 +7,7 @@ import CreateEvent from './CreateEvent'
 import UserProfile from './UserProfile'
 import SignUp from './SignUp'
 
-function App({}) {
+function App() {
     const[events, setEvents] = useState([])
     const[loggedIn, setLoggedIn] = useState(false)
     const[rsvps, setRsvps] = useState([])
@@ -48,7 +48,6 @@ function App({}) {
         setLoggedIn(userInfo.user)
         if(userInfo.user) {
             setRsvps(userInfo.user.rsvps)
-            // console.log(userInfo)
         }
     }
     
@@ -63,11 +62,6 @@ function App({}) {
     function handleEventChange(selectedCategory) {
         setSelectedCategory(selectedCategory)
     }
-
-    // function rsvp9(data) {  
-    //     setRsvps(data)
-    //     console.log(data)
-    // }
 
     const filterByCategory = events.filter((event) => {
         if (selectedCategory === "All") {
@@ -84,19 +78,22 @@ function App({}) {
 
     return (
         <div>
-            <NavBar loggedIn={loggedIn}
-            setLoggedIn={setLoggedIn} 
-            events={events}
-            onEventChange={handleEventChange}
+            <NavBar 
+                    loggedIn={loggedIn}
+                    setLoggedIn={setLoggedIn} 
+                    events={events}
+                    onEventChange={handleEventChange}
             /> 
 
             <Switch>
                 <Route exact path='/'>
-                    <Login onLogin={onLogin}/>
+                    <Login 
+                    onLogin={onLogin}/>
                 </Route>
 
                 <Route exact path="/signup">
-                    <SignUp onLogin={onLogin}/>
+                    <SignUp 
+                    onLogin={onLogin}/>
                 </Route>
 
                 <Route exact path='/allevents'>
@@ -118,7 +115,6 @@ function App({}) {
                     events={events}
                     onDeleteEvent = {handleDeleteEvent}
                     routeToCreateEvent={routeToCreateEvent}
-                    // rsvp9={rsvp9}
                     />
                 </Route>
 

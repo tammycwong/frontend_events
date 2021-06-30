@@ -34,7 +34,6 @@ function Login({onLogin}) {
     
     return (
         <div className="login-form">
-            {/* <h2>Login:</h2> */}
             <form onSubmit={(e) => handleLogin(e) }>
                 <label>Username: </label>
                 <input 

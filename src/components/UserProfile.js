@@ -7,9 +7,7 @@ function UserProfile({rsvps, onDeleteEvent, loggedIn, events, routeToCreateEvent
     const [isLoaded, setIsLoaded] = useState()
     const params = useParams()
     const [userEvents, setUserEvents] = useState([])
-    // const [rsvpArray, setRsvpArray] = useState(rsvps)
 
-    // GET request
     useEffect(() => {
         fetch(`http://localhost:3000/users/${params.id}`, {
             headers: {
@@ -20,9 +18,7 @@ function UserProfile({rsvps, onDeleteEvent, loggedIn, events, routeToCreateEvent
         .then((userData) => {
             setUserEvents(userData.user.events)
             setUserData(userData.user)
-            // setRsvpArray(userData.user.rsvps)
             setIsLoaded(true)
-            // rsvp9(userData.user.rsvps)
 
         });
     },[params.id]);
@@ -32,7 +28,6 @@ function UserProfile({rsvps, onDeleteEvent, loggedIn, events, routeToCreateEvent
             <div>
                 <UserCard 
                 userData={userData} 
-                // rsvps={rsvpArray} 
                 rsvps={rsvps}
                 onDeleteEvent={onDeleteEvent}
                 loggedIn={loggedIn}

@@ -2,7 +2,7 @@ import React from 'react'
 import EventCard from './EventCard'
 
 
-function AllEvents({events, createEvent, loggedIn, handleNewRsvp, onDeleteEvent, onEventChange, resetFilter, routeToCreateEvent}) {
+function AllEvents({events, createEvent, loggedIn, handleNewRsvp, onDeleteEvent, onEventChange, routeToCreateEvent}) {
     const {id} = loggedIn
 
     function handleCategory(e) {

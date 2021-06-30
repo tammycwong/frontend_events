@@ -1,14 +1,12 @@
 import React, {useState} from 'react'
-import {useHistory, Link, useParams} from 'react-router-dom'
+import {useHistory, Link} from 'react-router-dom'
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import v4 from 'uuid/v4'
 import {deleteEvent} from "../deleteEvent"
 
 function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setUserEvents, loggedIn, routeToCreateEvent}) {
     let userEventCards = []
     let history = useHistory()
-    // const params = useParams()
 
     const{image, username, name, location, interests, password, id}= userData
     const [updatedUsername, updatedSetUserName] = useState(username);
@@ -69,22 +67,7 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
             title: event.name
         }
     })
-    //     const rsvpArray = rsvpEventArray.map((event) => {
-    //     // userEventArray.map((event) => {
-    //       return (
-    //         <div key={event.id} className="div-with-delete">
-    //           <p>{event.name}</p>
-    //             <div>
-    //             <p className="attendee">Attendees: <br/>{event.all_attending_users.map((attendee) => {
-    //                 return <Link key={v4()} to={`/userprofile/${attendee.id}`}>
-    //                     <p className="attendee">✔️{attendee.name}</p></Link>    
-    //         })
-    //             }
-    //             </p>
-    //         </div>
-    //     </div>
-    //     )
-    // })
+
     const rsvpsOnlyArray = userData.rsvps.map((rsvp) => {
         return (
             <div className="div-with-delete">
@@ -101,10 +84,6 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
         </div>
         )
     })
-    // {rsvp.event.all_attending_users.map((user) => user.username)
-
-
-        if(userData.events) {
             userEventCards = userEvents.map((event) => {
                 const eventDate = event.date
                 const eventTime = event.time
@@ -113,20 +92,15 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
                     <div key={event.id} className="div-with-delete">
                         <p> {event.name}</p>
                         <p className="user-hosting-events">{eventDate} {eventTime}</p>
-                       
+                       {loggedIn && loggedIn.id === event.user_id ?
                         <button onClick={()=>handleOnDelete(event)} className="delete" alert={("are you sure?")}> ❌  REMOVE</button>
-                    </div>
+                        : null}
+                        </div>
                     
                     )
             })
             
-        }
-        console.log([...rsvpEventArray, ...userEventArray])
-        console.log(rsvps, userEvents)
     return(
-
-
-
         <div className="user-card">
             {/* outer container */}
             <div className="outer-container">
@@ -219,7 +193,6 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
                     <div className="inner-div-2-3">
                        <h4 className="profile-events-type">RSVPS:</h4>
                           <ul className="user-events">
-                              {/* {rsvpArray} */}
                             {rsvpsOnlyArray}
                           </ul>
                     </div>

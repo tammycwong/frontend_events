@@ -15,7 +15,6 @@ function CreateEvent({createEvent, loggedIn}) {
     function handleSubmit(e) {
         e.preventDefault();
         fetch("http://localhost:3000/events", {
-            // /${localStorage.event.id}
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
