@@ -31,6 +31,10 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
         deleteEvent(deletedEvent.id).then(()=>onDeleteEvent(deletedEvent.id))
     }
 
+    function handleUserNavigation() {
+        window.location.href=window.location.href
+    }
+
     function handleEdit(e) {
         e.preventDefault();
         fetch(`http://localhost:3000/users/${id}`, {
@@ -93,7 +97,7 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
                         <p> {event.name}</p>
                         <p className="user-hosting-events">{eventDate} {eventTime}</p>
                        {loggedIn && loggedIn.id === event.user_id ?
-                        <button onClick={()=>handleOnDelete(event)} className="delete" alert={("are you sure?")}> ❌  REMOVE</button>
+                        <button onClick={()=>handleOnDelete(event)} className="delete"> ❌  REMOVE</button>
                         : null}
                         </div>
                     
