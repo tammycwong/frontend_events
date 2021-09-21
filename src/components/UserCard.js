@@ -17,11 +17,7 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
     const [updatedLocation, updatedSetLocation] = useState(location);
 
     const [showEditForm, setShowEditForm] = useState(false)
-    // const [showRsvp, setShowRsvp] = useState (false)
-    // function handleShowRsvp() {
-    //     setShowRsvp(!showRsvp)
-    // }
-    console.log(userData, userEvents)
+
     function handleShowHide() {
         setShowEditForm(!showEditForm)
     }
@@ -29,10 +25,6 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
     function handleOnDelete(deletedEvent) {
         setUserEvents([...userEvents].filter((event)=> event.id !== deletedEvent.id))
         deleteEvent(deletedEvent.id).then(()=>onDeleteEvent(deletedEvent.id))
-    }
-
-    function handleUserNavigation() {
-        window.location.href=window.location.href
     }
 
     function handleEdit(e) {
@@ -91,7 +83,7 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
             userEventCards = userEvents.map((event) => {
                 const eventDate = event.date
                 const eventTime = event.time
-                // console.log(event.user_id)
+
                 return (
                     <div key={event.id} className="div-with-delete">
                         <p> {event.name}</p>
@@ -113,7 +105,7 @@ function UserCard({userData, rsvps, onDeleteEvent, setUserData, userEvents, setU
                     <img src={image} alt={name} className="profile-pic"/>
 
                     <div className="inner-div-1-2">
-                    {/* {loggedIn.id === userData.id ? */}
+
                     <h3 className="username">@{username}</h3>
                     {loggedIn.id === userData.id ?
                      <button className="edit-profile-button" onClick={handleShowHide}>Edit Profile</button>

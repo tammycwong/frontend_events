@@ -48,6 +48,10 @@ function NavBar({loggedIn}) {
                 Log out
             </Link>
             : null}
+
+            <Link>
+            
+            </Link>
         </div>
     )
 }
